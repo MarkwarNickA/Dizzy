@@ -48,7 +48,7 @@
             }
             CalculateSpeed();
             Move();
-            Turn();
+            //Turn();
             Jump();
         }
 

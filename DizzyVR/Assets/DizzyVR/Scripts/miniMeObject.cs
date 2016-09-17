@@ -37,6 +37,7 @@ public class miniMeObject : MonoBehaviour
 
         bodyPartScale = gameObject.transform.localScale;
         myMiniModel = cameraRig.GetComponent<MiniModel>();
+
     }
 
     void Update()
