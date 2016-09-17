@@ -21,16 +21,11 @@ namespace NewtonVR
         public NVRHand[] Hands;
 
         [SerializeField]
-        public float PlayerScale
+        public float PlayerScaleMultiplier
         {
             set
             {
-                transform.localScale.Set(value, value, value);
-            }
-
-            get
-            {
-                return transform.localScale.magnitude;
+                transform.localScale.Set(transform.localScale.x * value, transform.localScale.y * value, transform.localScale.z * value);
             }
         }
 
