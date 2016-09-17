@@ -52,6 +52,11 @@ public class MiniModel : MonoBehaviour
         buildingModelRenderers = oneToOneModel.GetComponentsInChildren<Renderer>();
         Renderer[] miniBuildingModelInstanceRenderers = miniBuildingModelInstance.GetComponentsInChildren<Renderer>();
 
+        foreach (Collider col in miniBuildingModelInstance.GetComponentsInChildren<Collider>())
+        {          
+            Destroy(col);
+        }
+
         for (int i = 0; i < buildingModelRenderers.Length; i++)
         {
             int lightmapIndex = buildingModelRenderers[i].lightmapIndex;
