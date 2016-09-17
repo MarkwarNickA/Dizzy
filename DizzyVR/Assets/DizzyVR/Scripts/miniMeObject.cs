@@ -1,17 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
-
-    public enum bodyPart
-    {
-        Left_Hand,
-        Right_Hand,
-        Head
-    }
+using System.IO;
 
 public class miniMeObject : MonoBehaviour
 {
-    public bodyPart myBodyPart;
-
     public Vector3 miniPosition;
     public Quaternion miniRotation;
     public Vector3 miniScale;
@@ -28,22 +20,23 @@ public class miniMeObject : MonoBehaviour
 
     void Start()
     {
-        myMiniModel = cameraRig.GetComponent<MiniModel>();
+        string bodyPartName = gameObject.name;
 
-        switch (myBodyPart)
+        switch (bodyPartName)
         {
-            case bodyPart.Left_Hand:
+            case "Left_Hand":
                 trackedObject = cameraRig.transform.GetChild(0).gameObject;
                 break;
-
-            case bodyPart.Right_Hand:
+            case "Right_Hand":
                 trackedObject = cameraRig.transform.GetChild(1).gameObject;
                 break;
-
-            case bodyPart.Head:
+            case "Head":
                 trackedObject = cameraRig.transform.GetChild(2).gameObject;
                 break;
         }
+
+        bodyPartScale = gameObject.transform.localScale;
+        myMiniModel = cameraRig.GetComponent<MiniModel>();
     }
 
     void Update()
@@ -54,10 +47,13 @@ public class miniMeObject : MonoBehaviour
         miniPosition = trackedObject.transform.position;
         miniPosition *= miniModelScale;
         miniPosition += miniModelOffset;
+        miniPosition += cameraRig.transform.position;
 
         miniRotation = trackedObject.transform.rotation;
 
         miniScale = bodyPartScale * miniModelScale;
         gameObject.transform.localScale = miniScale;
+        gameObject.transform.position = miniPosition;
+        gameObject.transform.rotation = miniRotation;
     }
 }
