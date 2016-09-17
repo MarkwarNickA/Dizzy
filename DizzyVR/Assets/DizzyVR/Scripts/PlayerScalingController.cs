@@ -36,13 +36,21 @@ namespace Assets
 
             if (ScalingOn)
             {
-
+                NVRPlayer.Instance.PlayerScaleMultiplier = ModifyScale(Step)
             }
         }
 
-        private float ModifyScale( float percentage, float maxMultiplier )
+        public void FixedUpdate()
         {
-            return 1f;
+
+        }
+
+        private float ModifyScale( float step )
+        {
+            if (Percent <= PercentMax)
+            {
+                return 
+            }
         }
     }
 }
