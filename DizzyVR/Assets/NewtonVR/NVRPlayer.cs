@@ -20,11 +20,17 @@ namespace NewtonVR
         [HideInInspector]
         public NVRHand[] Hands;
 
+        [SerializeField]
         public float PlayerScale
         {
             set
             {
+                transform.localScale.Set(value, value, value);
+            }
 
+            get
+            {
+                return transform.localScale.magnitude;
             }
         }
 
