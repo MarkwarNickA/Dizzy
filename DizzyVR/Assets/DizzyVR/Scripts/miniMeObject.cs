@@ -66,7 +66,7 @@ public class miniMeObject : MonoBehaviour
                 miniPosition = differenceBetweenHeadAndObject;
                 miniPosition *= miniModelScale;
                 miniPosition += miniModelOffset;
-                miniPosition = cameraRig.transform.position;
+                miniPosition += cameraRig.transform.position;
             }
             else
             {
@@ -74,7 +74,7 @@ public class miniMeObject : MonoBehaviour
                 miniPosition = new Vector3(0, trackedObject.transform.position.y, 0);
                 miniPosition *= miniModelScale;
                 miniPosition += miniModelOffset;
-                miniPosition = cameraRig.transform.position;
+                miniPosition += cameraRig.transform.position;
             }
         }
         else {
