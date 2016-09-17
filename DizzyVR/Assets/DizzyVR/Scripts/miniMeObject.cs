@@ -30,8 +30,6 @@ public class miniMeObject : MonoBehaviour
 
     void Start()
     {
-        _allowAvatarTranslation = this.AllowAvatarTranslation;
-
         string bodyPartName = gameObject.name;
 
         switch (bodyPartName)
@@ -56,6 +54,7 @@ public class miniMeObject : MonoBehaviour
 
         //set the initial cached position of the head
         cachedHeadPosition = trackedHeadObject.transform.position;
+        _allowAvatarTranslation = this.AllowAvatarTranslation;
     }
 
     void Update()
@@ -64,8 +63,10 @@ public class miniMeObject : MonoBehaviour
         miniModelOffset = myMiniModel.miniModelOffset;
 
         //track when the value has changed, and recache the head position
+        //on change of the "Allows Movement" property, recache the head position
         if (_allowAvatarTranslation != this.AllowAvatarTranslation) {
             cachedHeadPosition = trackedHeadObject.transform.position;
+            _allowAvatarTranslation = this.AllowAvatarTranslation;
         }
 
         //miniPosition = trackedObject.transform.position;
@@ -77,7 +78,7 @@ public class miniMeObject : MonoBehaviour
             {
                 //Get the position relative to the head
                 var differenceBetweenHeadAndObject = trackedObject.transform.position - trackedHeadObject.transform.position;
-                miniPosition = differenceBetweenHeadAndObject;
+                miniPosition = cachedHeadPosition + differenceBetweenHeadAndObject;
                 miniPosition *= miniModelScale;
                 miniPosition += miniModelOffset;
                 miniPosition += cameraRig.transform.position;
