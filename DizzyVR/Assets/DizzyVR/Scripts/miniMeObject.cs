@@ -12,7 +12,9 @@ public class miniMeObject : MonoBehaviour
 
     public GameObject cameraRig;
 
-    public bool AllowAvatarTranslation = true;
+
+    private bool _allowAvatarTranslation = true;
+    public bool AllowAvatarTranslation;
 
     GameObject trackedObject;
     float miniModelScale;
@@ -22,9 +24,14 @@ public class miniMeObject : MonoBehaviour
 
     GameObject trackedHeadObject;
 
+    //The head position when the app was started, or when the 3rd person mode was invoked.
+    Vector3 cachedHeadPosition;
+
 
     void Start()
     {
+        _allowAvatarTranslation = this.AllowAvatarTranslation;
+
         string bodyPartName = gameObject.name;
 
         switch (bodyPartName)
@@ -45,6 +52,10 @@ public class miniMeObject : MonoBehaviour
 
         bodyPartScale = gameObject.transform.localScale;
         myMiniModel = cameraRig.GetComponent<MiniModel>();
+
+
+        //set the initial cached position of the head
+        cachedHeadPosition = trackedHeadObject.transform.position;
     }
 
     void Update()
@@ -52,7 +63,10 @@ public class miniMeObject : MonoBehaviour
         miniModelScale = myMiniModel.miniModelScale;
         miniModelOffset = myMiniModel.miniModelOffset;
 
-
+        //track when the value has changed, and recache the head position
+        if (_allowAvatarTranslation != this.AllowAvatarTranslation) {
+            cachedHeadPosition = trackedHeadObject.transform.position;
+        }
 
         //miniPosition = trackedObject.transform.position;
 
@@ -71,7 +85,7 @@ public class miniMeObject : MonoBehaviour
             else
             {
                 // Don't update the position of the head - this sdhould only be updated by the vive wands.  
-                miniPosition = new Vector3(0, trackedObject.transform.position.y, 0);
+                miniPosition = new Vector3(cachedHeadPosition.x, trackedObject.transform.position.y, cachedHeadPosition.z);
                 miniPosition *= miniModelScale;
                 miniPosition += miniModelOffset;
                 miniPosition += cameraRig.transform.position;
@@ -82,8 +96,6 @@ public class miniMeObject : MonoBehaviour
             miniPosition *= miniModelScale;
             miniPosition += miniModelOffset;
             miniPosition += cameraRig.transform.position;
-            Debug.Log("hi");
-
         }
 
         miniRotation = trackedObject.transform.rotation;
