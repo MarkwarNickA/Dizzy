@@ -5,13 +5,37 @@ using System.Text;
 
 using UnityEngine;
 
+using Valve.VR;
 using NewtonVR;
 
-namespace Assets
+class PlayerMovementDetector : MonoBehaviour
 {
-    class PlayerMovementDetector
+
+    SteamVR_Camera PlayerCamera;
+
+    Vector3[] RecordedPositions;
+    Quaternion[] RecordedRotations;
+
+    public void Awake()
+    {
+        SteamVR_Utils.Event.Listen("OnNewPoseApplied", RecordPoseData);
+    }
+
+    public void OnDestroy()
+    {
+        SteamVR_Utils.Event.Remove("OnNewPoseApplied", RecordPoseData);
+    }
+
+    public void FixedUpdate()
     {
 
-        
     }
+
+    private void RecordPoseData(params object[] args)
+    {
+
+    }
+
+
 }
+
