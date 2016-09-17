@@ -18,6 +18,8 @@ public class MiniModel : MonoBehaviour
         
     Renderer[] buildingModelRenderers;
 
+    Vector3 lastCameraRigPosition;
+
     void Awake()
     {
         if (this.gameObject.GetComponent<SteamVR_ControllerManager>() == null)
@@ -64,9 +66,12 @@ public class MiniModel : MonoBehaviour
     }
 
     void miniModelPositionUpdate(GameObject miniModelInstance)
-    {
-        miniModelOffset += cameraRig.transform.position;
-        miniModelInstance.transform.position = miniModelOffset;
+    {  
+        miniModelInstance.transform.position = miniModelOffset 
+        + cameraRig.transform.position 
+        - lastCameraRigPosition; ;
+
+        lastCameraRigPosition = cameraRig.transform.position;
     }
 
     void setControllerButtons()
