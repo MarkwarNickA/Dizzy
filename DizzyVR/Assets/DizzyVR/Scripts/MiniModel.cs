@@ -28,11 +28,10 @@ public class MiniModel : MonoBehaviour
 
         cameraRig = this.gameObject;
 
-        //need to not find the hands by index
         leftHand = cameraRig.transform.GetChild(0).gameObject;
         rightHand = cameraRig.transform.GetChild(1).gameObject;
         oneToOneModelOffset = oneToOneModel.transform.position;
-        }
+    }
 
     void Start()
     {             
@@ -42,7 +41,7 @@ public class MiniModel : MonoBehaviour
 
     void Update()
     {
-        miniModelOffset += cameraRig.transform.position;
+        miniModelPositionUpdate(miniModelInstance);
     }
 
     public GameObject miniBuildingModelInstantiate(GameObject model)
@@ -62,6 +61,12 @@ public class MiniModel : MonoBehaviour
         }
 
         return miniBuildingModelInstance;
+    }
+
+    void miniModelPositionUpdate(GameObject miniModelInstance)
+    {
+        miniModelOffset += cameraRig.transform.position;
+        miniModelInstance.transform.position = miniModelOffset;
     }
 
     void setControllerButtons()
