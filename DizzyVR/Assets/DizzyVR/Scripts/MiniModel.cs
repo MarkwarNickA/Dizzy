@@ -8,6 +8,7 @@ public class MiniModel : MonoBehaviour
     public Vector3 miniModelOffset;
     public Vector3 oneToOneModelOffset;
     public float miniModelScale;
+	public bool firstPersonMode;
 
     GameObject cameraRig;
     GameObject leftHand;
@@ -37,11 +38,21 @@ public class MiniModel : MonoBehaviour
     {             
         miniModelInstance = miniBuildingModelInstantiate(oneToOneModel);
         setControllerButtons();
+		firstPersonMode = true;
     }
 
     void Update()
     {
         miniModelPositionUpdate(miniModelInstance);
+
+		//sloppy keyboard event for non-vives
+		if (Input.GetKeyDown(KeyCode.Space)){
+			if(firstPersonMode == true){
+				firstPersonMode = false;
+			}else {
+				firstPersonMode = true;		
+			}	
+		}
     }
 
     public GameObject miniBuildingModelInstantiate(GameObject model)
@@ -71,17 +82,28 @@ public class MiniModel : MonoBehaviour
     void setControllerButtons()
     {
         //Setup controller event listeners
-        //if (leftHand.GetComponent<VRTK_ControllerEvents>() == null
-        //    || rightHand.GetComponent<VRTK_ControllerEvents>() == null)
-        //{
-        //    Debug.LogError("You need to put a VRTK_ControllerEvents script on your SteamVR Controllers");
-        //    return;
-        //}
+        if (leftHand.GetComponent<VRTK_ControllerEvents>() == null
+            || rightHand.GetComponent<VRTK_ControllerEvents>() == null)
+        {
+            Debug.LogError("You need to put a VRTK_ControllerEvents script on your SteamVR Controllers");
+            return;
+        }
 
-        //leftHand.GetComponent<VRTK_ControllerEvents>().TriggerPressed +=
-        //    new ControllerInteractionEventHandler(DoTriggerPressed);
-        //rightHand.GetComponent<VRTK_ControllerEvents>().TriggerPressed +=
-        //    new ControllerInteractionEventHandler(DoTriggerPressed);
+        leftHand.GetComponent<VRTK_ControllerEvents>().TriggerPressed += new ControllerInteractionEventHandler(swapMode);
+		rightHand.GetComponent<VRTK_ControllerEvents>().TriggerPressed += new ControllerInteractionEventHandler(swapMode);
+
+
     }
+
+	public void swapMode(object sender, ControllerInteractionEventArgs e){
+		if(firstPersonMode == true){
+			firstPersonMode = false;
+		}else {
+			firstPersonMode = true;		
+		}
+		Debug.Log("Mode switched to: " + firstPersonMode);
+	}
+		
+
 }
 
