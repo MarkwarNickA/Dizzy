@@ -47,10 +47,13 @@ public class miniMeObject : MonoBehaviour
         miniPosition = trackedObject.transform.position;
         miniPosition *= miniModelScale;
         miniPosition += miniModelOffset;
+        miniPosition += cameraRig.transform.position;
 
         miniRotation = trackedObject.transform.rotation;
 
         miniScale = bodyPartScale * miniModelScale;
         gameObject.transform.localScale = miniScale;
+        gameObject.transform.position = miniPosition;
+        gameObject.transform.rotation = miniRotation;
     }
 }

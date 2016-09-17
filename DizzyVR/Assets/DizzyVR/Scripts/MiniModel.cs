@@ -18,8 +18,6 @@ public class MiniModel : MonoBehaviour
         
     Renderer[] buildingModelRenderers;
 
-    Vector3 lastCameraRigPosition;
-
     void Awake()
     {
         if (this.gameObject.GetComponent<SteamVR_ControllerManager>() == null)
@@ -66,23 +64,19 @@ public class MiniModel : MonoBehaviour
     }
 
     void miniModelPositionUpdate(GameObject miniModelInstance)
-    {  
-        miniModelInstance.transform.position = miniModelOffset 
-        + cameraRig.transform.position 
-        - lastCameraRigPosition; ;
-
-        lastCameraRigPosition = cameraRig.transform.position;
+    {
+        miniModelInstance.transform.position = cameraRig.transform.position + miniModelOffset; 
     }
 
     void setControllerButtons()
     {
         //Setup controller event listeners
-        if (leftHand.GetComponent<VRTK_ControllerEvents>() == null
-            || rightHand.GetComponent<VRTK_ControllerEvents>() == null)
-        {
-            Debug.LogError("You need to put a VRTK_ControllerEvents script on your SteamVR Controllers");
-            return;
-        }
+        //if (leftHand.GetComponent<VRTK_ControllerEvents>() == null
+        //    || rightHand.GetComponent<VRTK_ControllerEvents>() == null)
+        //{
+        //    Debug.LogError("You need to put a VRTK_ControllerEvents script on your SteamVR Controllers");
+        //    return;
+        //}
 
         //leftHand.GetComponent<VRTK_ControllerEvents>().TriggerPressed +=
         //    new ControllerInteractionEventHandler(DoTriggerPressed);
