@@ -10,7 +10,6 @@ using System.Collections;
 
 public class miniMeObject : MonoBehaviour
 {
-
     public bodyPart myBodyPart;
 
     public Vector3 miniPosition;
@@ -22,18 +21,14 @@ public class miniMeObject : MonoBehaviour
     public GameObject cameraRig;
     GameObject trackedObject;
     float miniModelScale;
+
     Vector3 miniModelOffset;
-    Vector3 buildingModelOffset;
-    GameObject miniModelinstance;
     MiniModel myMiniModel;
 
 
     void Start()
     {
         myMiniModel = cameraRig.GetComponent<MiniModel>();
-        miniModelScale = myMiniModel.miniModelScale;
-        miniModelOffset = myMiniModel.miniModelOffset;
-        buildingModelOffset = myMiniModel.oneToOneModelOffset;
 
         switch (myBodyPart)
         {
@@ -51,8 +46,11 @@ public class miniMeObject : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
+    void Update()
     {
+        miniModelScale = myMiniModel.miniModelScale;
+        miniModelOffset = myMiniModel.miniModelOffset;
+
         miniPosition = trackedObject.transform.position;
         miniPosition *= miniModelScale;
         miniPosition += miniModelOffset;
@@ -60,5 +58,6 @@ public class miniMeObject : MonoBehaviour
         miniRotation = trackedObject.transform.rotation;
 
         miniScale = bodyPartScale * miniModelScale;
+        gameObject.transform.localScale = miniScale;
     }
 }
