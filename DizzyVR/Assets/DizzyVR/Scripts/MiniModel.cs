@@ -65,19 +65,18 @@ public class MiniModel : MonoBehaviour
 
     void miniModelPositionUpdate(GameObject miniModelInstance)
     {
-        miniModelOffset += cameraRig.transform.position;
-        miniModelInstance.transform.position = miniModelOffset;
+        miniModelInstance.transform.position = cameraRig.transform.position + miniModelOffset; 
     }
 
     void setControllerButtons()
     {
         //Setup controller event listeners
-        if (leftHand.GetComponent<VRTK_ControllerEvents>() == null
-            || rightHand.GetComponent<VRTK_ControllerEvents>() == null)
-        {
-            Debug.LogError("You need to put a VRTK_ControllerEvents script on your SteamVR Controllers");
-            return;
-        }
+        //if (leftHand.GetComponent<VRTK_ControllerEvents>() == null
+        //    || rightHand.GetComponent<VRTK_ControllerEvents>() == null)
+        //{
+        //    Debug.LogError("You need to put a VRTK_ControllerEvents script on your SteamVR Controllers");
+        //    return;
+        //}
 
         //leftHand.GetComponent<VRTK_ControllerEvents>().TriggerPressed +=
         //    new ControllerInteractionEventHandler(DoTriggerPressed);
