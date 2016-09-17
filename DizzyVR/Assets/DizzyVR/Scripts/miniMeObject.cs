@@ -12,7 +12,7 @@ public class miniMeObject : MonoBehaviour
 
     public GameObject cameraRig;
 
-    public bool AllowAvatarTranslation;
+    public bool AllowAvatarTranslation = true;
 
     GameObject trackedObject;
     float miniModelScale;
@@ -56,35 +56,38 @@ public class miniMeObject : MonoBehaviour
 
         //miniPosition = trackedObject.transform.position;
 
-        if (AllowAvatarTranslation == true)
+        if (AllowAvatarTranslation == false)
         {
             string bodyPartName = gameObject.name;
             if (bodyPartName != "Head")
             {
                 //Get the position relative to the head
                 var differenceBetweenHeadAndObject = trackedObject.transform.position - trackedHeadObject.transform.position;
-                miniPosition = cameraRig.transform.position;
+                miniPosition = differenceBetweenHeadAndObject;
                 miniPosition *= miniModelScale;
                 miniPosition += miniModelOffset;
-                miniPosition += differenceBetweenHeadAndObject;
+                miniPosition = cameraRig.transform.position;
             }
             else
             {
                 // Don't update the position of the head - this sdhould only be updated by the vive wands.  
-                miniPosition = cameraRig.transform.position;
+                miniPosition = new Vector3(0, trackedObject.transform.position.y, 0);
                 miniPosition *= miniModelScale;
                 miniPosition += miniModelOffset;
+                miniPosition = cameraRig.transform.position;
             }
-
-            miniRotation = trackedObject.transform.rotation;
-            miniScale = bodyPartScale * miniModelScale;
         }
         else {
             miniPosition = trackedObject.transform.position;
             miniPosition *= miniModelScale;
             miniPosition += miniModelOffset;
             miniPosition += cameraRig.transform.position;
+            Debug.Log("hi");
+
         }
+
+        miniRotation = trackedObject.transform.rotation;
+        miniScale = bodyPartScale * miniModelScale;
 
 
         //Update this hand/head
