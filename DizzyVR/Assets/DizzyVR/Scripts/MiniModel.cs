@@ -91,6 +91,11 @@ public class MiniModel : MonoBehaviour
     public GameObject miniBuildingModelInstantiate(GameObject model)
     {
         GameObject miniBuildingModelInstance = (GameObject)Instantiate(model, miniModelOffset, Quaternion.identity);
+        miniBuildingModelInstance.layer = LayerMask.NameToLayer("MiniModel");
+        for(int i = 0; i < miniBuildingModelInstance.transform.childCount; i++)
+        {
+            miniBuildingModelInstance.transform.GetChild(i).gameObject.layer = LayerMask.NameToLayer("MiniModel");
+        }
         miniBuildingModelInstance.transform.localScale = new Vector3(miniModelScale, miniModelScale, miniModelScale);
 
 
