@@ -56,10 +56,8 @@ public class miniMeRemoteControl : MonoBehaviour {
     {
         if (touchAxis.y != 0f)
         {
-            print("mmS" + miniModelScale);
             movementSpeed = (acceleration * touchAxis.y / 10);
             movementSpeed = Mathf.Clamp(movementSpeed, -maxAcceleration, maxAcceleration);
-            print("movement speed " + movementSpeed);
         }
 
         if (touchAxis.x != 0f)
@@ -104,8 +102,6 @@ public class miniMeRemoteControl : MonoBehaviour {
             float fixY = transform.position.y;
             transform.position += (movement + strafe);
             transform.position = new Vector3(transform.position.x, fixY, transform.position.z);
-
-            //rb.MovePosition(rb.position + movement + strafe);
         }
     }
 
@@ -113,6 +109,7 @@ public class miniMeRemoteControl : MonoBehaviour {
     {
         if (!isJumping && triggerAxis > 0)
         {
+            print("tried to jump");
             float jumpHeight = (triggerAxis * jumpPower);
             rb.AddRelativeForce(Vector3.up * jumpHeight);
             triggerAxis = 0f;

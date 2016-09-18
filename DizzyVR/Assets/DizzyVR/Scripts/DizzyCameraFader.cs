@@ -17,7 +17,7 @@ public class DizzyCameraFader : MonoBehaviour {
 
     public FadeController Fader;
 
-    float ColliderRadius = 0.2f;
+    float ColliderRadius;
     
 	// Use this for initialization
 	void Start () {
@@ -25,7 +25,8 @@ public class DizzyCameraFader : MonoBehaviour {
         InBlocker = false;
         Blocked = false;
 
-        this.GetComponent<SphereCollider>().radius = ColliderRadius;
+        this.GetComponent<SphereCollider>().isTrigger = true;
+        ColliderRadius = this.GetComponent<SphereCollider>().radius;
 
         if (this.GetComponent<Rigidbody>() == null)
         {
