@@ -23,6 +23,7 @@ GameObject:
   - 65: {fileID: 65000012356032156}
   - 23: {fileID: 23000013456580378}
   - 114: {fileID: 114000011502790522}
+  - 114: {fileID: 114000014216013282}
   m_Layer: 0
   m_Name: Left_Hand
   m_TagString: Untagged
@@ -41,6 +42,7 @@ GameObject:
   - 33: {fileID: 33000013358682930}
   - 65: {fileID: 65000013762423740}
   - 23: {fileID: 23000010206039500}
+  - 114: {fileID: 114000012020469934}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -60,6 +62,7 @@ GameObject:
   - 65: {fileID: 65000011953873852}
   - 23: {fileID: 23000014291097572}
   - 114: {fileID: 114000011625198934}
+  - 114: {fileID: 114000010828731110}
   m_Layer: 0
   m_Name: Head
   m_TagString: Untagged
@@ -95,6 +98,7 @@ GameObject:
   - 65: {fileID: 65000011060171112}
   - 23: {fileID: 23000011758976268}
   - 114: {fileID: 114000010019222002}
+  - 114: {fileID: 114000014069386618}
   m_Layer: 0
   m_Name: Right_Hand
   m_TagString: Untagged
@@ -379,6 +383,17 @@ MonoBehaviour:
   miniScale: {x: 0, y: 0, z: 0}
   bodyPartScale: {x: 0, y: 0, z: 0}
   cameraRig: {fileID: 0}
+--- !u!114 &114000010828731110
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012299750912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8a54f0027cdb934b9747688cb62d153, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114000011502790522
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -411,6 +426,17 @@ MonoBehaviour:
   miniScale: {x: 0, y: 0, z: 0}
   bodyPartScale: {x: 0, y: 0, z: 0}
   cameraRig: {fileID: 0}
+--- !u!114 &114000012020469934
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011276449998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8a54f0027cdb934b9747688cb62d153, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114000013375508618
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -426,4 +452,27 @@ MonoBehaviour:
   Head: {fileID: 1000012299750912}
   LeftHand: {fileID: 1000010547650748}
   RightHand: {fileID: 1000012692096690}
+  miniModelScale: 0
   IsInThirdPerson: 0
+--- !u!114 &114000014069386618
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012692096690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8a54f0027cdb934b9747688cb62d153, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114000014216013282
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010547650748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8a54f0027cdb934b9747688cb62d153, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
