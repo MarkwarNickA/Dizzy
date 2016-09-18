@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 2eceab471c8dfa843bf8a88c09e19f00
-timeCreated: 1474142024
+timeCreated: 1474222877
 licenseType: Free
 SubstanceImporter:
   serializedVersion: 5
@@ -129,7 +129,7 @@ SubstanceImporter:
     materialInformation:
       serializedVersion: 5
       offset: {x: 0, y: 0}
-      scale: {x: 10, y: 10}
+      scale: {x: 50, y: 50}
       generateMipmaps: 1
       generateAllOutputs: 0
       animationUpdateRate: 42
@@ -140,7 +140,7 @@ SubstanceImporter:
           name: _BumpMap
         second:
           texture: {instanceID: 0}
-          scale: {x: 10, y: 1}
+          scale: {x: 50, y: 5}
           offset: {x: 0, y: 0}
       - first:
           name: _DetailAlbedoMap
@@ -164,31 +164,31 @@ SubstanceImporter:
           name: _EmissionMap
         second:
           texture: {instanceID: 0}
-          scale: {x: 10, y: 10}
+          scale: {x: 50, y: 50}
           offset: {x: 0, y: 0}
       - first:
           name: _MainTex
         second:
           texture: {instanceID: 0}
-          scale: {x: 10, y: 10}
+          scale: {x: 50, y: 50}
           offset: {x: 0, y: 0}
       - first:
           name: _MetallicGlossMap
         second:
           texture: {instanceID: 0}
-          scale: {x: 10, y: 1}
+          scale: {x: 50, y: 5}
           offset: {x: 0, y: 0}
       - first:
           name: _OcclusionMap
         second:
           texture: {instanceID: 0}
-          scale: {x: 10, y: 1}
+          scale: {x: 50, y: 5}
           offset: {x: 0, y: 0}
       - first:
           name: _ParallaxMap
         second:
           texture: {instanceID: 0}
-          scale: {x: 10, y: 1}
+          scale: {x: 50, y: 5}
           offset: {x: 0, y: 0}
       floats:
       - first:
@@ -286,13 +286,13 @@ SubstanceImporter:
       material: {instanceID: 0}
       baseUID: 2745898844
     - shaderProp:
-        name: _OcclusionMap
-      material: {instanceID: 0}
-      baseUID: 2745898846
-    - shaderProp:
         name: _ParallaxMap
       material: {instanceID: 0}
       baseUID: 2745898840
+    - shaderProp:
+        name: _OcclusionMap
+      material: {instanceID: 0}
+      baseUID: 2745898846
     buildTargetSettings:
     - serializedVersion: 2
       buildTarget: 
