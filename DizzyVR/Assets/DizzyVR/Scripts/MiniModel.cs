@@ -189,6 +189,11 @@ public class MiniModel : MonoBehaviour
         }
 	}
 
+    public Vector3 GetMiniMePosition()
+    {
+        return miniMeControllerInstance.transform.position;
+    }
+
 	/*
 	public void swapMode(){
 		if(firstPersonMode == true){

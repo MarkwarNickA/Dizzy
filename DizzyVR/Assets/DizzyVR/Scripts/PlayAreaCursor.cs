@@ -14,6 +14,7 @@ public class PlayAreaCursor : MonoBehaviour {
     private GameObject playAreaCursor;
     private GameObject[] playAreaCursorBoundaries;
     private Transform headset;
+    private bool playAreaShown;
 
     // Mini vars
     public GameObject cameraRig;
@@ -24,22 +25,22 @@ public class PlayAreaCursor : MonoBehaviour {
     MiniModel myMiniModel;
 
 
-    void Awake () {
+    void Awake() {
         headset = VRTK_DeviceFinder.HeadsetTransform();
         playArea = VRTK_DeviceFinder.PlayAreaTransform();
         playAreaCursorBoundaries = new GameObject[4];
     }
 	
-	void Update () {
-        miniModelScale = myMiniModel.miniModelScale;
-        miniModelOffset = myMiniModel.miniModelOffset;
+	void Update() {
+        if (myMiniModel.firstPersonMode == playAreaShown)
+            TogglePointer(!playAreaShown);
 
-        miniPosition = new Vector3(headset.transform.position.x, heightAdjustment, headset.transform.position.z);
-        miniPosition *= miniModelScale;
-        miniPosition += miniModelOffset;
-        miniPosition += cameraRig.transform.position;
-
-        SetPlayAreaCursorTransform(miniPosition);
+        if (playAreaShown)
+        {
+            miniPosition = myMiniModel.GetMiniMePosition();
+            miniPosition.y = heightAdjustment;
+            SetPlayAreaCursorTransform(miniPosition);
+        }
     }
 
     void Start()
@@ -85,6 +86,7 @@ public class PlayAreaCursor : MonoBehaviour {
         {
             playAreaCursor.gameObject.SetActive(playAreaState);
         }
+        playAreaShown = state;
     }
 
     private void DrawPlayAreaCursorBoundary(int index, float left, float right, float top, float bottom, float thickness, Vector3 localPosition)

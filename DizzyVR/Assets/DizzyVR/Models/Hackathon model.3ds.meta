@@ -1,0 +1,703 @@
+fileFormatVersion: 2
+guid: 88daf852c92805d4f8f8f58b566d7674
+timeCreated: 1474221752
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Layer 01_0
+    100004: Layer 01_1
+    100006: Layer 02_0
+    100008: Layer 02_1
+    100010: Layer 02_2
+    100012: Layer 02_3
+    100014: Layer 02_4
+    100016: Layer 02_5
+    100018: Layer 02_6
+    100020: Layer 02_7
+    100022: Layer 02_8
+    100024: Layer 02_9
+    100026: Layer 03_0
+    100028: Layer 03_1
+    100030: Layer 03_2
+    100032: Layer 03_3
+    100034: Layer 03_4
+    100036: Layer 03_5
+    100038: Layer 03_6
+    100040: Layer 03_7
+    100042: Layer 03_8
+    100044: Layer 03_9
+    100046: Layer 04_0
+    100048: Layer 04_1
+    100050: Layer 04_2
+    100052: Layer 04_3
+    100054: Layer 05_0
+    100056: Layer 06_0
+    100058: Layer 06_1
+    100060: Layer 08_0
+    100062: Layer 08_1
+    100064: Layer 08_2
+    100066: Layer 08_3
+    100068: Layer 08_4
+    100070: Layer 08_5
+    100072: Layer 08_6
+    100074: Layer 08_7
+    100076: Layer 08_8
+    100078: Layer 08_9
+    100080: Layer 09_0
+    100082: Layer 09_1
+    100084: Layer 09_2
+    100086: Layer 09_3
+    100088: Layer 09_4
+    100090: Layer 11_0
+    100092: Layer 11_1
+    100094: Layer 11_2
+    100096: Layer 11_3
+    100098: Layer 11_4
+    100100: Layer 11_5
+    100102: Layer 11_6
+    100104: Layer _011
+    100106: Layer _047
+    100108: Layer _048
+    100110: Layer _049
+    100112: Layer _050
+    100114: Layer _051
+    100116: Layer _052
+    100118: Layer _053
+    100120: Layer _054
+    100122: Layer _055
+    100124: Layer _056
+    100126: Layer _057
+    100128: Layer _059
+    100130: Layer _062
+    100132: Layer _063
+    100134: Layer _064
+    100136: Layer _065
+    100138: Layer _066
+    100140: Layer _067
+    100142: Layer _068
+    100144: Layer _069
+    100146: Layer _070
+    100148: Layer _071
+    100150: Layer _072
+    100152: Layer _074
+    100154: Layer _075
+    100156: Layer _076
+    100158: Layer _077
+    100160: Layer _078
+    100162: Layer _079
+    100164: Layer _080
+    100166: Layer 01_2
+    100168: Layer 01_3
+    100170: Layer 04_4
+    100172: Layer 04_5
+    100174: Layer 04_6
+    100176: Layer 04_7
+    100178: Layer 05_1
+    100180: Layer 06_2
+    100182: Layer 06_3
+    100184: Layer 09_5
+    100186: Layer 09_6
+    100188: Layer 09_7
+    100190: Layer 09_8
+    100192: Layer 09_9
+    100194: Layer 11_7
+    100196: Layer 11_8
+    100198: Layer 11_9
+    100200: Layer _002
+    100202: Layer _003
+    100204: Layer _004
+    100206: Layer _005
+    100208: Layer _006
+    100210: Layer _010
+    100212: Layer _012
+    100214: Layer _017
+    100216: Layer _019
+    100218: Layer _021
+    100220: Layer _022
+    100222: Layer _023
+    100224: Layer _024
+    100226: Layer _025
+    100228: Layer _026
+    100230: Layer _027
+    100232: Layer _028
+    100234: Layer _030
+    100236: Layer _032
+    100238: Layer _033
+    100240: Layer _034
+    100242: Layer _035
+    100244: Layer _036
+    100246: Layer _037
+    100248: Layer _038
+    100250: Layer _039
+    100252: Layer _046
+    400000: //RootNode
+    400002: Layer 01_0
+    400004: Layer 01_1
+    400006: Layer 02_0
+    400008: Layer 02_1
+    400010: Layer 02_2
+    400012: Layer 02_3
+    400014: Layer 02_4
+    400016: Layer 02_5
+    400018: Layer 02_6
+    400020: Layer 02_7
+    400022: Layer 02_8
+    400024: Layer 02_9
+    400026: Layer 03_0
+    400028: Layer 03_1
+    400030: Layer 03_2
+    400032: Layer 03_3
+    400034: Layer 03_4
+    400036: Layer 03_5
+    400038: Layer 03_6
+    400040: Layer 03_7
+    400042: Layer 03_8
+    400044: Layer 03_9
+    400046: Layer 04_0
+    400048: Layer 04_1
+    400050: Layer 04_2
+    400052: Layer 04_3
+    400054: Layer 05_0
+    400056: Layer 06_0
+    400058: Layer 06_1
+    400060: Layer 08_0
+    400062: Layer 08_1
+    400064: Layer 08_2
+    400066: Layer 08_3
+    400068: Layer 08_4
+    400070: Layer 08_5
+    400072: Layer 08_6
+    400074: Layer 08_7
+    400076: Layer 08_8
+    400078: Layer 08_9
+    400080: Layer 09_0
+    400082: Layer 09_1
+    400084: Layer 09_2
+    400086: Layer 09_3
+    400088: Layer 09_4
+    400090: Layer 11_0
+    400092: Layer 11_1
+    400094: Layer 11_2
+    400096: Layer 11_3
+    400098: Layer 11_4
+    400100: Layer 11_5
+    400102: Layer 11_6
+    400104: Layer _011
+    400106: Layer _047
+    400108: Layer _048
+    400110: Layer _049
+    400112: Layer _050
+    400114: Layer _051
+    400116: Layer _052
+    400118: Layer _053
+    400120: Layer _054
+    400122: Layer _055
+    400124: Layer _056
+    400126: Layer _057
+    400128: Layer _059
+    400130: Layer _062
+    400132: Layer _063
+    400134: Layer _064
+    400136: Layer _065
+    400138: Layer _066
+    400140: Layer _067
+    400142: Layer _068
+    400144: Layer _069
+    400146: Layer _070
+    400148: Layer _071
+    400150: Layer _072
+    400152: Layer _074
+    400154: Layer _075
+    400156: Layer _076
+    400158: Layer _077
+    400160: Layer _078
+    400162: Layer _079
+    400164: Layer _080
+    400166: Layer 01_2
+    400168: Layer 01_3
+    400170: Layer 04_4
+    400172: Layer 04_5
+    400174: Layer 04_6
+    400176: Layer 04_7
+    400178: Layer 05_1
+    400180: Layer 06_2
+    400182: Layer 06_3
+    400184: Layer 09_5
+    400186: Layer 09_6
+    400188: Layer 09_7
+    400190: Layer 09_8
+    400192: Layer 09_9
+    400194: Layer 11_7
+    400196: Layer 11_8
+    400198: Layer 11_9
+    400200: Layer _002
+    400202: Layer _003
+    400204: Layer _004
+    400206: Layer _005
+    400208: Layer _006
+    400210: Layer _010
+    400212: Layer _012
+    400214: Layer _017
+    400216: Layer _019
+    400218: Layer _021
+    400220: Layer _022
+    400222: Layer _023
+    400224: Layer _024
+    400226: Layer _025
+    400228: Layer _026
+    400230: Layer _027
+    400232: Layer _028
+    400234: Layer _030
+    400236: Layer _032
+    400238: Layer _033
+    400240: Layer _034
+    400242: Layer _035
+    400244: Layer _036
+    400246: Layer _037
+    400248: Layer _038
+    400250: Layer _039
+    400252: Layer _046
+    2300000: Layer 01_0
+    2300002: Layer 01_1
+    2300004: Layer 02_0
+    2300006: Layer 02_1
+    2300008: Layer 02_2
+    2300010: Layer 02_3
+    2300012: Layer 02_4
+    2300014: Layer 02_5
+    2300016: Layer 02_6
+    2300018: Layer 02_7
+    2300020: Layer 02_8
+    2300022: Layer 02_9
+    2300024: Layer 03_0
+    2300026: Layer 03_1
+    2300028: Layer 03_2
+    2300030: Layer 03_3
+    2300032: Layer 03_4
+    2300034: Layer 03_5
+    2300036: Layer 03_6
+    2300038: Layer 03_7
+    2300040: Layer 03_8
+    2300042: Layer 03_9
+    2300044: Layer 04_0
+    2300046: Layer 04_1
+    2300048: Layer 04_2
+    2300050: Layer 04_3
+    2300052: Layer 05_0
+    2300054: Layer 06_0
+    2300056: Layer 06_1
+    2300058: Layer 08_0
+    2300060: Layer 08_1
+    2300062: Layer 08_2
+    2300064: Layer 08_3
+    2300066: Layer 08_4
+    2300068: Layer 08_5
+    2300070: Layer 08_6
+    2300072: Layer 08_7
+    2300074: Layer 08_8
+    2300076: Layer 08_9
+    2300078: Layer 09_0
+    2300080: Layer 09_1
+    2300082: Layer 09_2
+    2300084: Layer 09_3
+    2300086: Layer 09_4
+    2300088: Layer 11_0
+    2300090: Layer 11_1
+    2300092: Layer 11_2
+    2300094: Layer 11_3
+    2300096: Layer 11_4
+    2300098: Layer 11_5
+    2300100: Layer 11_6
+    2300102: Layer _011
+    2300104: Layer _047
+    2300106: Layer _048
+    2300108: Layer _049
+    2300110: Layer _050
+    2300112: Layer _051
+    2300114: Layer _052
+    2300116: Layer _053
+    2300118: Layer _054
+    2300120: Layer _055
+    2300122: Layer _056
+    2300124: Layer _057
+    2300126: Layer _059
+    2300128: Layer _062
+    2300130: Layer _063
+    2300132: Layer _064
+    2300134: Layer _065
+    2300136: Layer _066
+    2300138: Layer _067
+    2300140: Layer _068
+    2300142: Layer _069
+    2300144: Layer _070
+    2300146: Layer _071
+    2300148: Layer _072
+    2300150: Layer _074
+    2300152: Layer _075
+    2300154: Layer _076
+    2300156: Layer _077
+    2300158: Layer _078
+    2300160: Layer _079
+    2300162: Layer _080
+    2300164: Layer 01_2
+    2300166: Layer 01_3
+    2300168: Layer 04_4
+    2300170: Layer 04_5
+    2300172: Layer 04_6
+    2300174: Layer 04_7
+    2300176: Layer 05_1
+    2300178: Layer 06_2
+    2300180: Layer 06_3
+    2300182: Layer 09_5
+    2300184: Layer 09_6
+    2300186: Layer 09_7
+    2300188: Layer 09_8
+    2300190: Layer 09_9
+    2300192: Layer 11_7
+    2300194: Layer 11_8
+    2300196: Layer 11_9
+    2300198: Layer _002
+    2300200: Layer _003
+    2300202: Layer _004
+    2300204: Layer _005
+    2300206: Layer _006
+    2300208: Layer _010
+    2300210: Layer _012
+    2300212: Layer _017
+    2300214: Layer _019
+    2300216: Layer _021
+    2300218: Layer _022
+    2300220: Layer _023
+    2300222: Layer _024
+    2300224: Layer _025
+    2300226: Layer _026
+    2300228: Layer _027
+    2300230: Layer _028
+    2300232: Layer _030
+    2300234: Layer _032
+    2300236: Layer _033
+    2300238: Layer _034
+    2300240: Layer _035
+    2300242: Layer _036
+    2300244: Layer _037
+    2300246: Layer _038
+    2300248: Layer _039
+    2300250: Layer _046
+    3300000: Layer 01_0
+    3300002: Layer 01_1
+    3300004: Layer 02_0
+    3300006: Layer 02_1
+    3300008: Layer 02_2
+    3300010: Layer 02_3
+    3300012: Layer 02_4
+    3300014: Layer 02_5
+    3300016: Layer 02_6
+    3300018: Layer 02_7
+    3300020: Layer 02_8
+    3300022: Layer 02_9
+    3300024: Layer 03_0
+    3300026: Layer 03_1
+    3300028: Layer 03_2
+    3300030: Layer 03_3
+    3300032: Layer 03_4
+    3300034: Layer 03_5
+    3300036: Layer 03_6
+    3300038: Layer 03_7
+    3300040: Layer 03_8
+    3300042: Layer 03_9
+    3300044: Layer 04_0
+    3300046: Layer 04_1
+    3300048: Layer 04_2
+    3300050: Layer 04_3
+    3300052: Layer 05_0
+    3300054: Layer 06_0
+    3300056: Layer 06_1
+    3300058: Layer 08_0
+    3300060: Layer 08_1
+    3300062: Layer 08_2
+    3300064: Layer 08_3
+    3300066: Layer 08_4
+    3300068: Layer 08_5
+    3300070: Layer 08_6
+    3300072: Layer 08_7
+    3300074: Layer 08_8
+    3300076: Layer 08_9
+    3300078: Layer 09_0
+    3300080: Layer 09_1
+    3300082: Layer 09_2
+    3300084: Layer 09_3
+    3300086: Layer 09_4
+    3300088: Layer 11_0
+    3300090: Layer 11_1
+    3300092: Layer 11_2
+    3300094: Layer 11_3
+    3300096: Layer 11_4
+    3300098: Layer 11_5
+    3300100: Layer 11_6
+    3300102: Layer _011
+    3300104: Layer _047
+    3300106: Layer _048
+    3300108: Layer _049
+    3300110: Layer _050
+    3300112: Layer _051
+    3300114: Layer _052
+    3300116: Layer _053
+    3300118: Layer _054
+    3300120: Layer _055
+    3300122: Layer _056
+    3300124: Layer _057
+    3300126: Layer _059
+    3300128: Layer _062
+    3300130: Layer _063
+    3300132: Layer _064
+    3300134: Layer _065
+    3300136: Layer _066
+    3300138: Layer _067
+    3300140: Layer _068
+    3300142: Layer _069
+    3300144: Layer _070
+    3300146: Layer _071
+    3300148: Layer _072
+    3300150: Layer _074
+    3300152: Layer _075
+    3300154: Layer _076
+    3300156: Layer _077
+    3300158: Layer _078
+    3300160: Layer _079
+    3300162: Layer _080
+    3300164: Layer 01_2
+    3300166: Layer 01_3
+    3300168: Layer 04_4
+    3300170: Layer 04_5
+    3300172: Layer 04_6
+    3300174: Layer 04_7
+    3300176: Layer 05_1
+    3300178: Layer 06_2
+    3300180: Layer 06_3
+    3300182: Layer 09_5
+    3300184: Layer 09_6
+    3300186: Layer 09_7
+    3300188: Layer 09_8
+    3300190: Layer 09_9
+    3300192: Layer 11_7
+    3300194: Layer 11_8
+    3300196: Layer 11_9
+    3300198: Layer _002
+    3300200: Layer _003
+    3300202: Layer _004
+    3300204: Layer _005
+    3300206: Layer _006
+    3300208: Layer _010
+    3300210: Layer _012
+    3300212: Layer _017
+    3300214: Layer _019
+    3300216: Layer _021
+    3300218: Layer _022
+    3300220: Layer _023
+    3300222: Layer _024
+    3300224: Layer _025
+    3300226: Layer _026
+    3300228: Layer _027
+    3300230: Layer _028
+    3300232: Layer _030
+    3300234: Layer _032
+    3300236: Layer _033
+    3300238: Layer _034
+    3300240: Layer _035
+    3300242: Layer _036
+    3300244: Layer _037
+    3300246: Layer _038
+    3300248: Layer _039
+    3300250: Layer _046
+    4300000: Layer 02_0
+    4300002: Layer 02_1
+    4300004: Layer 02_2
+    4300006: Layer 02_3
+    4300008: Layer 02_4
+    4300010: Layer 02_5
+    4300012: Layer 02_6
+    4300014: Layer 02_7
+    4300016: Layer 02_8
+    4300018: Layer 02_9
+    4300020: Layer _011
+    4300022: Layer 08_0
+    4300024: Layer 08_1
+    4300026: Layer 08_2
+    4300028: Layer 08_3
+    4300030: Layer 08_4
+    4300032: Layer 08_5
+    4300034: Layer 01_0
+    4300036: Layer 06_0
+    4300038: Layer 11_0
+    4300040: Layer 11_1
+    4300042: Layer 11_2
+    4300044: Layer 11_3
+    4300046: Layer 11_4
+    4300048: Layer 11_5
+    4300050: Layer 06_1
+    4300052: Layer 04_0
+    4300054: Layer 08_6
+    4300056: Layer 03_0
+    4300058: Layer 03_1
+    4300060: Layer 03_2
+    4300062: Layer 03_3
+    4300064: Layer 03_4
+    4300066: Layer 03_5
+    4300068: Layer 03_6
+    4300070: Layer 03_7
+    4300072: Layer 03_8
+    4300074: Layer 03_9
+    4300076: Layer 08_7
+    4300078: Layer 09_0
+    4300080: Layer 09_1
+    4300082: Layer 09_2
+    4300084: Layer 09_3
+    4300086: Layer 09_4
+    4300088: Layer 08_8
+    4300090: Layer 08_9
+    4300092: Layer _047
+    4300094: Layer _048
+    4300096: Layer _049
+    4300098: Layer _050
+    4300100: Layer _051
+    4300102: Layer _052
+    4300104: Layer _053
+    4300106: Layer _054
+    4300108: Layer _055
+    4300110: Layer _056
+    4300112: Layer _057
+    4300114: Layer 05_0
+    4300116: Layer _059
+    4300118: Layer 11_6
+    4300120: Layer 04_1
+    4300122: Layer _062
+    4300124: Layer _063
+    4300126: Layer _064
+    4300128: Layer _065
+    4300130: Layer _066
+    4300132: Layer _067
+    4300134: Layer _068
+    4300136: Layer _069
+    4300138: Layer _070
+    4300140: Layer _071
+    4300142: Layer _072
+    4300144: Layer 04_2
+    4300146: Layer _074
+    4300148: Layer _075
+    4300150: Layer _076
+    4300152: Layer _077
+    4300154: Layer _078
+    4300156: Layer _079
+    4300158: Layer _080
+    4300160: Layer 04_3
+    4300162: Layer 01_1
+    4300164: Layer _002
+    4300166: Layer _003
+    4300168: Layer _004
+    4300170: Layer _005
+    4300172: Layer _006
+    4300174: Layer 01_3
+    4300176: Layer 06_3
+    4300178: Layer _010
+    4300180: Layer _012
+    4300182: Layer 11_9
+    4300184: Layer 11_8
+    4300186: Layer 06_2
+    4300188: Layer 04_7
+    4300190: Layer _017
+    4300192: Layer _019
+    4300194: Layer _021
+    4300196: Layer _022
+    4300198: Layer _023
+    4300200: Layer _024
+    4300202: Layer _025
+    4300204: Layer _026
+    4300206: Layer _027
+    4300208: Layer _028
+    4300210: Layer _030
+    4300212: Layer _032
+    4300214: Layer _033
+    4300216: Layer _034
+    4300218: Layer _035
+    4300220: Layer _036
+    4300222: Layer _037
+    4300224: Layer _038
+    4300226: Layer _039
+    4300228: Layer 09_9
+    4300230: Layer 09_8
+    4300232: Layer 09_7
+    4300234: Layer 09_6
+    4300236: Layer 09_5
+    4300238: Layer _046
+    4300240: Layer 05_1
+    4300242: Layer 11_7
+    4300244: Layer 04_6
+    4300246: Layer 04_5
+    4300248: Layer 04_4
+    4300250: Layer 01_2
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
