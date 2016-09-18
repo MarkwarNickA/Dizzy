@@ -18,7 +18,7 @@ public class MiniModel : MonoBehaviour
     GameObject leftHand;
     GameObject rightHand;
 
-	public GameObject miniMe;
+
     public GameObject oneToOneModel;
     public GameObject miniModelInstance;
 
@@ -26,8 +26,9 @@ public class MiniModel : MonoBehaviour
     //Will get added to the minimap when it is instantiated
     public GameObject MiniMePrefab; 
     private GameObject MiniPrefabInstance;
+    private MiniMeController miniMeControllerInstance;
 
-        
+
     Renderer[] buildingModelRenderers;
 
     void Awake()
@@ -56,7 +57,11 @@ public class MiniModel : MonoBehaviour
         var tempScale = MiniMePrefab.transform.localScale;
         this.MiniPrefabInstance = (GameObject)Instantiate(MiniMePrefab, miniModelInstance.transform);
         this.MiniPrefabInstance.transform.localScale = tempScale;
-        var miniMeControllerInstance = this.MiniPrefabInstance.GetComponent<MiniMeController>();
+        this.miniMeControllerInstance = this.MiniPrefabInstance.GetComponent<MiniMeController>();
+
+        leftHand.GetComponent<miniMeRemoteControlEvents>().miniMe = MiniPrefabInstance;
+        rightHand.GetComponent<miniMeRemoteControlEvents>().miniMe = MiniPrefabInstance;
+        MiniPrefabInstance.GetComponent<miniMeRemoteControl>().cameraRig = cameraRig;
 
         if (MiniPrefabInstance == null) Debug.Log("No prefab Instance");
         if (miniMeControllerInstance == null) Debug.Log("No controller Instance");
@@ -67,9 +72,8 @@ public class MiniModel : MonoBehaviour
         //Bind Controller buttons for 1st/3rd Person mode switcher
         setControllerButtons();
 		firstPersonMode = false;
-		//disable hand controls
-		GetComponent<VRTK_TouchpadWalking>().LeftController = false;
-		GetComponent<VRTK_TouchpadWalking>().RightController = false;
+        //disable hand controls
+        MiniPrefabInstance.GetComponent<miniMeRemoteControl>().RemoteControlEnabled = false;
 
     }
 
@@ -141,7 +145,7 @@ public class MiniModel : MonoBehaviour
 			Debug.Log ("3RD PERSON MODE!:");
 			firstPersonMode = false;
 			//show miniMe
-			miniMe.BroadcastMessage("Show");
+			MiniPrefabInstance.BroadcastMessage("Show");
 
 			//show miniMap
 			miniModelInstance.BroadcastMessage("Show");
@@ -149,23 +153,20 @@ public class MiniModel : MonoBehaviour
 			//hide environment
 			oneToOneModel.BroadcastMessage("Hide");
 
-			//disable hand controls
-			GetComponent<VRTK_TouchpadWalking>().LeftController = true;
-			GetComponent<VRTK_TouchpadWalking>().RightController = true;
-
-			//disable phyiscal movement minime
-			miniMe.BroadcastMessage("SetAllowAvatarTranslation", false);
+            //disable hand controls
+            MiniPrefabInstance.GetComponent<miniMeRemoteControl>().RemoteControlEnabled = true;
+            miniMeControllerInstance.IsInThirdPerson = true;
 
 
-
-		}else {
+        }
+        else {
 			
 			Debug.Log ("1st PERSON MODE!");
 
 			firstPersonMode = true;
 
 			//hide miniMe
-			miniMe.BroadcastMessage("Hide");
+			MiniPrefabInstance.BroadcastMessage("Hide");
 
 			//hide miniMap
 			miniModelInstance.BroadcastMessage("Hide");
@@ -173,14 +174,11 @@ public class MiniModel : MonoBehaviour
 			//show environment
 			oneToOneModel.BroadcastMessage("Show");
 
-			//enabled hand controls
-			GetComponent<VRTK_TouchpadWalking>().LeftController = false;
-			GetComponent<VRTK_TouchpadWalking>().RightController = false;
+            //enabled hand controls
+            MiniPrefabInstance.GetComponent<miniMeRemoteControl>().RemoteControlEnabled = false;
+            miniMeControllerInstance.IsInThirdPerson = false;
 
-			//enable phyiscal movement of minime
-			miniMe.BroadcastMessage("SetAllowAvatarTranslation", true);
-
-		}
+        }
 	}
 
 	/*

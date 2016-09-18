@@ -34,6 +34,7 @@ public class MiniMeController : MonoBehaviour {
         Head.GetComponent<miniMeObject>().cameraRig = this.cameraRig;
         LeftHand.GetComponent<miniMeObject>().cameraRig = this.cameraRig;
         RightHand.GetComponent<miniMeObject>().cameraRig = this.cameraRig;
+        GetComponent<miniMeRemoteControl>().cameraRig = this.cameraRig;
 
         //We need the head to make relative positions from the hands (i.e. fix the head)
         trackedHeadObject = cameraRig.transform.GetChild(2).gameObject;
@@ -54,13 +55,13 @@ public class MiniMeController : MonoBehaviour {
             updateCachedHeadPosition();
         }
 
-        this.gameObject.transform.localPosition = trackedHeadObject.transform.position;
-        Debug.Log("" + trackedHeadObject.transform.position + " - " +  miniModelScale);
+        
+        //Debug.Log("" + trackedHeadObject.transform.position + " - " +  miniModelScale);
     }
 
     void updateCachedHeadPosition() {
         cachedHeadPosition = trackedHeadObject.transform.position;
         _isInThirdPerson = this.IsInThirdPerson;
-        this.gameObject.transform.localPosition = cachedHeadPosition * miniModelScale;
+        this.gameObject.transform.localPosition = trackedHeadObject.transform.position; 
     }
 }
