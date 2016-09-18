@@ -52,7 +52,7 @@ Light:
   serializedVersion: 7
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 5
+  m_Intensity: 3.8
   m_Range: 5
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -87,6 +87,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68d96573c6f985b43afbbda37ea8108b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FadeStep: 0.01
 --- !u!136 &136000010277183562
 CapsuleCollider:
   m_ObjectHideFlags: 1

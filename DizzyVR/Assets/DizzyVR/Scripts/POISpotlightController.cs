@@ -19,4 +19,14 @@ public class POISpotlightController : MonoBehaviour {
         Spotlight.transform.localPosition = RelativePlayerPosition;
 
 	}
+
+    public void On()
+    {
+        Spotlight.enabled = true;
+    }
+
+    public void Off()
+    {
+        Spotlight.enabled = false;
+    }
 }
