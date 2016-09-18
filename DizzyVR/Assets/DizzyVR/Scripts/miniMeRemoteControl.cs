@@ -8,6 +8,8 @@ public class miniMeRemoteControl : MonoBehaviour {
     public float maxAcceleration = 1f;
     public float jumpPower = 10f;
 
+    public bool RemoteControlEnabled;
+
     private float acceleration = 1f;
     private float movementSpeed = 0f;
     private float strafeSpeed = 0f;
@@ -16,6 +18,8 @@ public class miniMeRemoteControl : MonoBehaviour {
     private Vector2 touchAxis;
     private float triggerAxis;
     private Rigidbody rb;
+
+    float miniModelScale;
 
     public VRTK_DeviceFinder.Devices deviceForDirection = VRTK_DeviceFinder.Devices.Headset;
 
@@ -32,6 +36,8 @@ public class miniMeRemoteControl : MonoBehaviour {
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        //miniModelScale = cameraRig.GetComponent<MiniModel>().miniModelScale;
+        RemoteControlEnabled = false;
     }
 
     private void FixedUpdate()
@@ -50,13 +56,14 @@ public class miniMeRemoteControl : MonoBehaviour {
     {
         if (touchAxis.y != 0f)
         {
-            movementSpeed += (acceleration * touchAxis.y);
+            print("mmS" + miniModelScale);
+            movementSpeed += (acceleration * touchAxis.y / 5);
             movementSpeed = Mathf.Clamp(movementSpeed, -maxAcceleration, maxAcceleration);
         }
 
         if (touchAxis.x != 0f)
         {
-            strafeSpeed += (acceleration * touchAxis.x);
+            strafeSpeed += (acceleration * touchAxis.x / 5);
             strafeSpeed = Mathf.Clamp(strafeSpeed, -maxAcceleration, maxAcceleration);
         }
 
@@ -86,23 +93,19 @@ public class miniMeRemoteControl : MonoBehaviour {
 
     private void Move()
     {
-        //var deviceDirector = VRTK_DeviceFinder.DeviceTransform(deviceForDirection);
-        var forward = (gameObject.transform.position - cameraRig.transform.position).normalized;
-        var right = new Vector3(forward.z, 0, -forward.x);
-        Vector3 movement = forward * movementSpeed * Time.deltaTime;
-        Vector3 strafe = right * strafeSpeed * Time.deltaTime;
-        //print("ms " + movementSpeed);
-        //print("right" + right);
-        //print("movement " + movement);
-        //print("strafe " + strafe);
-        float fixY = transform.position.y;
-        print("f" + forward);
-        Vector3 mostraf = (movement + strafe).normalized;
-        print("m" + mostraf);
-        transform.position += (movement);
-        transform.position = new Vector3(transform.position.x, fixY, transform.position.z);
+        if (RemoteControlEnabled)
+        {
+            var deviceDirector = VRTK_DeviceFinder.DeviceTransform(deviceForDirection);
+            //var forward = (gameObject.transform.position - cameraRig.transform.position).normalized;
+            //var right = new Vector3(forward.z, 0, -forward.x);
+            Vector3 movement = deviceDirector.forward * movementSpeed * Time.deltaTime;
+            Vector3 strafe = deviceDirector.right * strafeSpeed * Time.deltaTime;
+            float fixY = transform.position.y;
+            transform.position += (movement + strafe);
+            transform.position = new Vector3(transform.position.x, fixY, transform.position.z);
 
-        //rb.MovePosition(rb.position + movement + strafe);
+            //rb.MovePosition(rb.position + movement + strafe);
+        }
     }
 
     private void Jump()

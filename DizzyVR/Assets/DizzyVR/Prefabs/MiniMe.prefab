@@ -79,6 +79,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011869417912}
   - 114: {fileID: 114000013375508618}
+  - 114: {fileID: 114000011153191594}
+  - 54: {fileID: 54000011741030672}
   m_Layer: 0
   m_Name: MiniMe
   m_TagString: Untagged
@@ -319,6 +321,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012299750912}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &54000011741030672
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012436096194}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 116
+  m_CollisionDetection: 0
 --- !u!65 &65000011060171112
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -394,6 +411,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8a54f0027cdb934b9747688cb62d153, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114000011153191594
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012436096194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb696468598865c41a016037d9f6b02d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraRig: {fileID: 0}
+  maxAcceleration: 1
+  jumpPower: 10
+  deviceForDirection: 0
 --- !u!114 &114000011502790522
 MonoBehaviour:
   m_ObjectHideFlags: 1
