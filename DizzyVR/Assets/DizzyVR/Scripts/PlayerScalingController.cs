@@ -15,6 +15,7 @@ namespace Assets
     class PlayerScalingController : MonoBehaviour
     {
         public Transform CameraRigRoot;
+        public Transform Eyes;
         public ScalingState CurrentScalingState;
 
         public float ScalingStep;
@@ -23,35 +24,50 @@ namespace Assets
         public Vector3 StartPosition;
         public Vector3 MidPosition;
 
+        public float ScaleMultiplier;
+
         VRTK_ControllerEvents Controller;
 
         public void Awake()
         {
             Controller = GetComponent<VRTK_ControllerEvents>();
             CurrentScalingState = ScalingState.NotScaling;
+
+            ScaleMultiplier = 1;
+
+            //CameraRigRoot.localScale = new Vector3(10, 10, 10);
         }
 
         public void Update()
         {
             if (Controller.gripPressed)
             {
-                if (CurrentScalingState == ScalingState.NotScaling)
-                {
-                    StartPosition = transform.position;
-                }
+                //if (CurrentScalingState == ScalingState.NotScaling)
+                //{
+                //    StartPosition = Eyes.transform.position;
+                //}
 
                 CurrentScalingState = ScalingState.ScalingUp;
-                CurrentPosition = transform.position;
+                //CurrentPosition = Eyes.transform.position;
             }
             else
             {
-                if (CurrentScalingState == ScalingState.ScalingUp)
-                {
-                    MidPosition = transform.position;
-                }
+                //if (CurrentScalingState == ScalingState.ScalingUp)
+                //{
+                //    MidPosition = Eyes.transform.position;
+                //}
 
-                CurrentPosition = transform.position;
-                if (Vector3.Distance(StartPosition, MidPosition) > Vector3.Distance(MidPosition, CurrentPosition))
+                //CurrentPosition = Eyes.transform.position;
+                //if (Vector3.Distance(StartPosition, MidPosition) > Vector3.Distance(MidPosition, CurrentPosition))
+                //{
+                //    CurrentScalingState = ScalingState.ScalingDown;
+                //}
+                //else
+                //{
+                //    CurrentScalingState = ScalingState.NotScaling;
+                //}
+                
+                if (ScaleMultiplier > 1)
                 {
                     CurrentScalingState = ScalingState.ScalingDown;
                 }
@@ -63,9 +79,22 @@ namespace Assets
 
             if (CurrentScalingState == ScalingState.ScalingUp | CurrentScalingState == ScalingState.ScalingDown)
             {
-                float PreClampedPercent = CalculatePercent(CurrentPosition, StartPosition, MidPosition, CurrentScalingState);
-                SetScale(Mathf.Clamp(PreClampedPercent, 0, 1) + 1);
+                //float PreClampedPercent = CalculatePercent(CurrentPosition, StartPosition, MidPosition, CurrentScalingState);
+                //SetScale(PreClampedPercent);
+                if (CurrentScalingState == ScalingState.ScalingUp)
+                {
+                    SetScale(ScaleMultiplier += ScalingStep);
+                }
+                else if (CurrentScalingState == ScalingState.ScalingDown)
+                {
+                    SetScale(ScaleMultiplier -= ScalingStep);
+                }
             }
+            else
+            {
+                ScaleMultiplier = 1;
+            }
+
 
 
         }
@@ -91,12 +120,13 @@ namespace Assets
                 Distance = MidDistance - Distance;
                 PreClampedPercent = Distance * ScalingStep;
             }
-            return PreClampedPercent;
+            return Mathf.Clamp(PreClampedPercent, 1, 10); ;
         }
 
         private void SetScale(float PercentScaled)
         {
-            CameraRigRoot.localScale.Set(CameraRigRoot.localScale.x * PercentScaled, CameraRigRoot.localScale.y * PercentScaled, CameraRigRoot.localScale.z * PercentScaled);
+            Debug.Log(PercentScaled);
+            CameraRigRoot.localScale = (new Vector3(PercentScaled, PercentScaled, PercentScaled));
         }
     }
 }

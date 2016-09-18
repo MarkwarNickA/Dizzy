@@ -63,7 +63,6 @@ public class miniMeRemoteControl : MonoBehaviour {
 			movementSpeed = Mathf.Clamp (movementSpeed, -maxAcceleration, maxAcceleration);
 		}
 
-
         if (touchAxis.x != 0f)
         {
 			strafeSpeed = (acceleration * touchAxis.x / 5);
@@ -107,8 +106,6 @@ public class miniMeRemoteControl : MonoBehaviour {
             float fixY = transform.position.y;
             transform.position += (movement + strafe);
             transform.position = new Vector3(transform.position.x, fixY, transform.position.z);
-
-            //rb.MovePosition(rb.position + movement + strafe);
         }
     }
 
