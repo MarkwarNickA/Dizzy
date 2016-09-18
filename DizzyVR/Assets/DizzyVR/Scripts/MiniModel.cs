@@ -43,6 +43,7 @@ public class MiniModel : MonoBehaviour
 
     void Start()
     {
+		
         cameraRig = this.gameObject;
 
         //Get Refeences to VR Rig Components
@@ -59,8 +60,8 @@ public class MiniModel : MonoBehaviour
         this.MiniPrefabInstance.transform.localScale = tempScale;
         this.miniMeControllerInstance = this.MiniPrefabInstance.GetComponent<MiniMeController>();
 
-        leftHand.GetComponent<miniMeRemoteControlEvents>().miniMe = MiniPrefabInstance;
-        rightHand.GetComponent<miniMeRemoteControlEvents>().miniMe = MiniPrefabInstance;
+		leftHand.GetComponent<miniMeRemoteControlEvents>().miniMe = this.MiniPrefabInstance;
+		rightHand.GetComponent<miniMeRemoteControlEvents>().miniMe = this.MiniPrefabInstance;
         MiniPrefabInstance.GetComponent<miniMeRemoteControl>().cameraRig = cameraRig;
 
         if (MiniPrefabInstance == null) Debug.Log("No prefab Instance");
@@ -74,7 +75,7 @@ public class MiniModel : MonoBehaviour
 		firstPersonMode = false;
         //disable hand controls
         MiniPrefabInstance.GetComponent<miniMeRemoteControl>().RemoteControlEnabled = false;
-
+		swapModeNow();
     }
 
     void Update()
@@ -133,13 +134,17 @@ public class MiniModel : MonoBehaviour
             return;
         }
 
-        leftHand.GetComponent<VRTK_ControllerEvents>().TriggerPressed += new ControllerInteractionEventHandler(swapMode);
-		rightHand.GetComponent<VRTK_ControllerEvents>().TriggerPressed += new ControllerInteractionEventHandler(swapMode);
+        leftHand.GetComponent<VRTK_ControllerEvents>().GripPressed += new ControllerInteractionEventHandler(swapMode);
+		rightHand.GetComponent<VRTK_ControllerEvents>().GripPressed += new ControllerInteractionEventHandler(swapMode);
 
 
     }
 
 	public void swapMode(object sender, ControllerInteractionEventArgs e){
+		swapModeNow();
+	}
+
+	public void swapModeNow(){
 		if(firstPersonMode == true){
 
 			Debug.Log ("3RD PERSON MODE!:");
@@ -177,6 +182,9 @@ public class MiniModel : MonoBehaviour
             //enabled hand controls
             MiniPrefabInstance.GetComponent<miniMeRemoteControl>().RemoteControlEnabled = false;
             miniMeControllerInstance.IsInThirdPerson = false;
+
+			cameraRig.transform.position = new Vector3(MiniPrefabInstance.transform.localPosition.x, cameraRig.transform.position.y, MiniPrefabInstance.transform.localPosition.z);
+
 
         }
 	}

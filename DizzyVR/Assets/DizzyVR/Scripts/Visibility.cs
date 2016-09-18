@@ -7,7 +7,7 @@ public class Visibility : MonoBehaviour {
 
 	Renderer rend;
 
-	void Start () {
+	void Awake () {
 		rend = GetComponentInChildren<Renderer> ();
 	}
 	

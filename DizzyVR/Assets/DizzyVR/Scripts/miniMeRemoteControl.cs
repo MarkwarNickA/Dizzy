@@ -19,7 +19,7 @@ public class miniMeRemoteControl : MonoBehaviour {
     private float triggerAxis;
     private Rigidbody rb;
 
-    float miniModelScale;
+    //float miniModelScale;
 
     public VRTK_DeviceFinder.Devices deviceForDirection = VRTK_DeviceFinder.Devices.Headset;
 
@@ -44,7 +44,7 @@ public class miniMeRemoteControl : MonoBehaviour {
     {
         if (isJumping)
         {
-            touchAxis = new Vector2(0f, 0f);
+            //touchAxis = new Vector2(0f, 0f);
         }
 
         CalculateSpeed();
@@ -54,22 +54,26 @@ public class miniMeRemoteControl : MonoBehaviour {
 
     private void CalculateSpeed()
     {
-        if (touchAxis.y != 0f)
-        {
-            print("mmS" + miniModelScale);
-            movementSpeed += (acceleration * touchAxis.y / 5);
-            movementSpeed = Mathf.Clamp(movementSpeed, -maxAcceleration, maxAcceleration);
-        }
+
+		//print (touchAxis);
+		if (touchAxis.y != 0f) {
+			//print("mmS" + miniModelScale);
+			movementSpeed = (acceleration * touchAxis.y / 5);
+			//print ("movementSpeed");
+			movementSpeed = Mathf.Clamp (movementSpeed, -maxAcceleration, maxAcceleration);
+		}
+
 
         if (touchAxis.x != 0f)
         {
-            strafeSpeed += (acceleration * touchAxis.x / 5);
+            strafeSpeed = (acceleration * touchAxis.x / 5);
             strafeSpeed = Mathf.Clamp(strafeSpeed, -maxAcceleration, maxAcceleration);
         }
 
         if (touchAxis.y == 0f && touchAxis.x == 0f)
         {
             Decelerate();
+
         }
     }
 
@@ -110,21 +114,29 @@ public class miniMeRemoteControl : MonoBehaviour {
 
     private void Jump()
     {
-        if (!isJumping && triggerAxis > 0)
+		Debug.Log ("trig" + triggerAxis);
+		if (!isJumping && triggerAxis > 0.5 )
         {
-            float jumpHeight = (triggerAxis * jumpPower);
+            
+			float jumpHeight = ( jumpPower);
+			print ("JUMPING!");
             rb.AddRelativeForce(Vector3.up * jumpHeight);
             triggerAxis = 0f;
+			isJumping = true;
         }
+		if(rb.velocity.y==0){
+			isJumping = false;	
+		}
+	
     }
 
     private void OnTriggerStay(Collider collider)
     {
-        isJumping = false;
+        //isJumping = false;
     }
 
     private void OnTriggerExit(Collider collider)
     {
-        isJumping = true;
+       // isJumping = true;
     }
 }
