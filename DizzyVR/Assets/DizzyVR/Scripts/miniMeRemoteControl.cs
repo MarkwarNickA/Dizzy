@@ -58,14 +58,14 @@ public class miniMeRemoteControl : MonoBehaviour {
 		//print (touchAxis);
 		if (touchAxis.y != 0f) {
 			//print("mmS" + miniModelScale);
-			movementSpeed = (acceleration * touchAxis.y / 5);
+			movementSpeed = (acceleration * touchAxis.y / 10);
 			//print ("movementSpeed");
 			movementSpeed = Mathf.Clamp (movementSpeed, -maxAcceleration, maxAcceleration);
 		}
 
         if (touchAxis.x != 0f)
         {
-			strafeSpeed = (acceleration * touchAxis.x / 5);
+			strafeSpeed = (acceleration * touchAxis.x / 10);
             strafeSpeed = Mathf.Clamp(strafeSpeed, -maxAcceleration, maxAcceleration);
         }
 

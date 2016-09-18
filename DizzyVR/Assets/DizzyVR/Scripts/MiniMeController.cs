@@ -66,9 +66,9 @@ public class MiniMeController : MonoBehaviour {
         _isInThirdPerson = this.IsInThirdPerson;
 
 		var cameraEye = cameraRig.transform.GetChild (2).gameObject;
-		Vector3 eyeOffset = new Vector3 (cameraEye.transform.localPosition.x, .2f, cameraEye.transform.localPosition.z);
+		Vector3 eyeOffset = new Vector3 (cameraEye.transform.localPosition.x, 0f, cameraEye.transform.localPosition.z);
 
-		this.gameObject.transform.localPosition = this.cameraRig.transform.position + -eyeOffset;
+		this.gameObject.transform.localPosition = this.cameraRig.transform.position -eyeOffset;
 
 		print (this.cameraRig.transform.localPosition);
     }

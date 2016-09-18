@@ -199,6 +199,7 @@ public class MiniModel : MonoBehaviour
         var scaleTo = new Vector3(1.0f, 1.0f, 1.0f);
         var positionFrom = miniModelInstance.transform.position;
         var positionTo = Vector3.zero;
+
         ChangePosition(miniModelInstance, positionFrom, positionTo, scalefrom, scaleTo, this.ModeSwitchDurationSeconds, doTransition,
             delegate (bool cancel)
             {
@@ -248,6 +249,8 @@ public class MiniModel : MonoBehaviour
         var scaleTo = new Vector3(miniModelScale, miniModelScale, miniModelScale);
         var positionFrom = miniModelInstance.transform.position;
         var positionTo = miniModelOffset;
+
+
         ChangePosition(miniModelInstance, positionFrom, positionTo, scalefrom, scaleTo, this.ModeSwitchDurationSeconds, doTransition,
             delegate(bool cancel) {
                 //Do stuff when the animation ends
