@@ -24,7 +24,7 @@ GameObject:
   - 23: {fileID: 23000013456580378}
   - 114: {fileID: 114000011502790522}
   - 114: {fileID: 114000014216013282}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Left_Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - 65: {fileID: 65000013762423740}
   - 23: {fileID: 23000010206039500}
   - 114: {fileID: 114000012020469934}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63,7 +63,7 @@ GameObject:
   - 23: {fileID: 23000014291097572}
   - 114: {fileID: 114000011625198934}
   - 114: {fileID: 114000010828731110}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81,7 +81,7 @@ GameObject:
   - 114: {fileID: 114000013375508618}
   - 114: {fileID: 114000011153191594}
   - 54: {fileID: 54000011741030672}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: MiniMe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ GameObject:
   - 23: {fileID: 23000011758976268}
   - 114: {fileID: 114000010019222002}
   - 114: {fileID: 114000014069386618}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Right_Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
