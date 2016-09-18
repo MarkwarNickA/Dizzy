@@ -23,7 +23,7 @@ GameObject:
   - 136: {fileID: 136000010277183562}
   - 114: {fileID: 114000012211326552}
   m_Layer: 0
-  m_Name: Spotlight
+  m_Name: UnblockSpotlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
