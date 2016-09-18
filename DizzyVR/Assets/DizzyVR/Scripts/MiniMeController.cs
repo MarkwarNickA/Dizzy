@@ -64,7 +64,12 @@ public class MiniMeController : MonoBehaviour {
 	void updateMiniMePosition() {
 		cachedMiniMePosition = trackedHeadObject.transform.position;
         _isInThirdPerson = this.IsInThirdPerson;
-		this.gameObject.transform.localPosition = this.cameraRig.transform.localPosition;
+
+		var cameraEye = cameraRig.transform.GetChild (2).gameObject;
+		Vector3 eyeOffset = new Vector3 (cameraEye.transform.localPosition.x, .2f, cameraEye.transform.localPosition.z);
+
+		this.gameObject.transform.localPosition = this.cameraRig.transform.position + -eyeOffset;
+
 		print (this.cameraRig.transform.localPosition);
     }
 }

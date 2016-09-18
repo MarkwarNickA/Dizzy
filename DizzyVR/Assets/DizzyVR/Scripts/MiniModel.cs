@@ -29,6 +29,8 @@ public class MiniModel : MonoBehaviour
     private GameObject MiniPrefabInstance;
     private MiniMeController miniMeControllerInstance;
 
+    public float ModeSwitchDurationSeconds = 3.2f;
+
 
     Renderer[] buildingModelRenderers;
 
@@ -74,10 +76,10 @@ public class MiniModel : MonoBehaviour
 
         //Bind Controller buttons for 1st/3rd Person mode switcher
         setControllerButtons();
-		firstPersonMode = true;
+
         //disable hand controls
         MiniPrefabInstance.GetComponent<miniMeRemoteControl>().RemoteControlEnabled = false;
-		swapModeNow();
+        Start3rdPerson(false);
     }
 
     void Update()
@@ -86,12 +88,8 @@ public class MiniModel : MonoBehaviour
 
 		//sloppy keyboard event for non-vives
 		if (Input.GetKeyDown(KeyCode.Space)){
-			if(firstPersonMode == true){
-				firstPersonMode = false;
-			}else {
-				firstPersonMode = true;		
-			}	
-		}
+            swapModeNow();
+        }
 
     }
 
@@ -121,6 +119,11 @@ public class MiniModel : MonoBehaviour
         return miniBuildingModelInstance;
     }
 
+
+    /// <summary>
+    /// Position the Whole mini map relative to the 1st person camera's position.
+    /// </summary>
+    /// <param name="miniModelInstance"></param>
     void miniModelPositionUpdate(GameObject miniModelInstance)
     {
         miniModelInstance.transform.position = cameraRig.transform.position + miniModelOffset; 
@@ -143,95 +146,186 @@ public class MiniModel : MonoBehaviour
     }
 
 	public void swapMode(object sender, ControllerInteractionEventArgs e){
-		swapModeNow();
+		swapModeNow(true);
 	}
 
-	public void swapModeNow(){
-		if(firstPersonMode == true){
 
-			Debug.Log ("3RD PERSON MODE!:");
-			firstPersonMode = false;
-			//show miniMe
-			MiniPrefabInstance.BroadcastMessage("Show");
-
-			//show miniMap
-			miniModelInstance.BroadcastMessage("Show");
-
-			//hide environment
-			oneToOneModel.BroadcastMessage("Hide");
-
-            //disable hand controls
-            MiniPrefabInstance.GetComponent<miniMeRemoteControl>().RemoteControlEnabled = true;
-            miniMeControllerInstance.IsInThirdPerson = true;
+    /// <summary>
+    /// Overload - in most cases we want the camera+other transitions to happenn
+    /// </summary>
+    public void swapModeNow()
+    {
+        swapModeNow(true);
+    }
 
 
+    /// <summary>
+    /// Switcvh between modes - decide whether to do transitions here
+    /// </summary>
+    /// <param name="transitionsOn"></param>
+    public void swapModeNow(bool transitionsOn){
+        firstPersonMode = !firstPersonMode;
+
+        if (firstPersonMode == true){
+            Start1stPerson(transitionsOn);
         }
         else {
-			
-			Debug.Log ("1st PERSON MODE!");
-
-			firstPersonMode = true;
-
-			//hide miniMe
-			MiniPrefabInstance.BroadcastMessage("Hide");
-
-			//hide miniMap
-			miniModelInstance.BroadcastMessage("Hide");
-
-			//show environment
-			oneToOneModel.BroadcastMessage("Show");
-
-            //enabled hand controls
-            MiniPrefabInstance.GetComponent<miniMeRemoteControl>().RemoteControlEnabled = false;
-            miniMeControllerInstance.IsInThirdPerson = false;
-
-			Vector3 eyeOffset = new Vector3 (cameraEye.transform.localPosition.x, 0, cameraEye.transform.localPosition.z);
-
-			Vector3 rigPos = MiniPrefabInstance.transform.localPosition + eyeOffset;
-			cameraRig.transform.position = rigPos;
-
-
+            Start3rdPerson(transitionsOn);
         }
+
 	}
+
+
+    public delegate void AnimationCompleted(bool AnimationCancelled);
+
+    /// <summary>
+    /// Go from 3rd to 1st peson mode - happens on an event update, and on start.
+    /// scale the minimap to be full size
+    /// </summary>
+    /// <param name="doTransition"></param>
+    private void Start1stPerson(bool doTransition) {
+        Debug.Log("1st PERSON MODE!");
+
+        firstPersonMode = true;
+
+
+        Vector3 eyeOffset = new Vector3(cameraEye.transform.localPosition.x, 0, cameraEye.transform.localPosition.z);
+
+        Vector3 rigPos = MiniPrefabInstance.transform.localPosition + eyeOffset;
+        cameraRig.transform.position = rigPos;
+
+        //Zoom the mini-map larger to match the real world coordinates
+        var scalefrom = new Vector3(miniModelScale, miniModelScale, miniModelScale);
+        var scaleTo = new Vector3(1.0f, 1.0f, 1.0f);
+        var positionFrom = miniModelInstance.transform.position;
+        var positionTo = Vector3.zero;
+        ChangePosition(miniModelInstance, positionFrom, positionTo, scalefrom, scaleTo, this.ModeSwitchDurationSeconds, doTransition,
+            delegate (bool cancel)
+            {
+                //Stuff to Do after the animation completes
+                //hide miniMe
+                MiniPrefabInstance.BroadcastMessage("Hide");
+
+                //hide miniMap
+                miniModelInstance.BroadcastMessage("Hide");
+
+                //show environment
+                oneToOneModel.BroadcastMessage("Show");
+
+                //enabled hand controls
+                MiniPrefabInstance.GetComponent<miniMeRemoteControl>().RemoteControlEnabled = false;
+                miniMeControllerInstance.IsInThirdPerson = false;
+                Debug.Log("DONE ANIMATION to 1st PERSON mode!");
+            }
+            );
+    }
 
     public Vector3 GetMiniMePosition()
     {
         return miniMeControllerInstance.transform.position;
     }
 
-	/*
-	public void swapMode(){
-		if(firstPersonMode == true){
-			firstPersonMode = false;
-			//show miniMe
-			miniMe.BroadcastMessage("Show");
 
-			//show miniMap
-			miniModelInstance.BroadcastMessage("Show");
+    /// <summary>
+    /// Go from 1st to 3rd person mode - happens on an event update, and on start.
+    /// Zoom out to see the minimap again
+    /// </summary>
+    /// <param name="doTransition"></param>
+    private void Start3rdPerson(bool doTransition)
+    {
+        Debug.Log("3RD PERSON MODE!:");
+        firstPersonMode = false;
 
-			//hide environment
-			oneToOneModel.BroadcastMessage("Hide");
+        //show miniMap
+        miniModelInstance.BroadcastMessage("Show");
+
+        //hide environment
+        oneToOneModel.BroadcastMessage("Hide");
+
+        //Move tghe mini-map back to it's offset position away from the PLayspace (cameraRig)
+        //Zoom the mini-map larger to match the real world coordinates
+        var scalefrom = miniModelInstance.transform.localScale;
+        var scaleTo = new Vector3(miniModelScale, miniModelScale, miniModelScale);
+        var positionFrom = miniModelInstance.transform.position;
+        var positionTo = miniModelOffset;
+        ChangePosition(miniModelInstance, positionFrom, positionTo, scalefrom, scaleTo, this.ModeSwitchDurationSeconds, doTransition,
+            delegate(bool cancel) {
+                //Do stuff when the animation ends
+
+                //show miniMe
+                MiniPrefabInstance.BroadcastMessage("Show");
+
+                //disable hand controls
+                MiniPrefabInstance.GetComponent<miniMeRemoteControl>().RemoteControlEnabled = true;
+                miniMeControllerInstance.IsInThirdPerson = true;
+
+                Debug.Log("DONE ANIMATION to 3RD PERSON!");
+            }
+            );
+    }
 
 
-		}else {
-			firstPersonMode = true;
+    private bool IsLerping = false;
 
-			//hide miniMe
-			miniMe.BroadcastMessage("Hide");
+    public void ChangePosition(
+        GameObject model,
+        Vector3 positionFrom,
+        Vector3 positionTo,
+        Vector3 scaleFrom,
+        Vector3 scaleTo,
+        float duration,
+        bool animate,
+        AnimationCompleted callback
+        )
+    {
+        IsLerping = false; //this will stop any currently running lerp coroutine
+        if (duration > 0 && animate == true)
+        {
+            IsLerping = true;
+            //Start the lerp here
+            StartCoroutine(doAnimation(model,positionFrom,positionTo,scaleFrom,scaleTo,duration, callback));
+        }
+        else
+        {
+            model.transform.position = positionTo;
+            model.transform.localScale = scaleTo;
+            callback(false);
+        }
+    }
 
-			//hide miniMap
-			miniModelInstance.BroadcastMessage("Hide");
 
-			//show environment
-			oneToOneModel.BroadcastMessage("Show");
+    //Animate the scale of the minimap to 
+    private IEnumerator doAnimation(
+        GameObject model,
+        Vector3 positionFrom,
+        Vector3 positionTo,
+        Vector3 scaleFrom,
+        Vector3 scaleTo,
+        float duration,
+        AnimationCompleted callback)
+    {
 
-		}
-		Debug.Log("Mode switched to: " + firstPersonMode);
-	}
-	*/
+        for (float t = 0.0f; t < duration; t += Time.deltaTime)
+        {
+            model.transform.position = Vector3.Lerp(positionFrom, positionTo, t / duration);
+            model.transform.localScale = Vector3.Lerp(scaleFrom, scaleTo, t / duration);
+            yield return null;
 
+            // if isLerping is set to false while this coroutine is running
+            // ...stop running lerp coroutine
+            if (IsLerping == false) yield break; 
+        }
 
-		
+        //Only jump to the end position if the coroutine hasn't been interupted.
+        if (IsLerping) { 
+            model.transform.position = positionTo;
+            model.transform.localScale = scaleTo;
+            callback(false);
+            IsLerping = false;
+        }
+
+    }
+
 
 }
 
