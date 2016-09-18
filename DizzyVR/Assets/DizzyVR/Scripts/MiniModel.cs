@@ -17,6 +17,7 @@ public class MiniModel : MonoBehaviour
     GameObject cameraRig;
     GameObject leftHand;
     GameObject rightHand;
+	GameObject cameraEye;
 
 
     public GameObject oneToOneModel;
@@ -49,6 +50,7 @@ public class MiniModel : MonoBehaviour
         //Get Refeences to VR Rig Components
         leftHand = cameraRig.transform.GetChild(0).gameObject;
         rightHand = cameraRig.transform.GetChild(1).gameObject;
+		cameraEye = cameraRig.transform.GetChild(2).gameObject;
         oneToOneModelOffset = oneToOneModel.transform.position;
 
         //create the minimap        
@@ -72,7 +74,7 @@ public class MiniModel : MonoBehaviour
 
         //Bind Controller buttons for 1st/3rd Person mode switcher
         setControllerButtons();
-		firstPersonMode = false;
+		firstPersonMode = true;
         //disable hand controls
         MiniPrefabInstance.GetComponent<miniMeRemoteControl>().RemoteControlEnabled = false;
 		swapModeNow();
@@ -183,7 +185,10 @@ public class MiniModel : MonoBehaviour
             MiniPrefabInstance.GetComponent<miniMeRemoteControl>().RemoteControlEnabled = false;
             miniMeControllerInstance.IsInThirdPerson = false;
 
-			cameraRig.transform.position = new Vector3(MiniPrefabInstance.transform.localPosition.x, cameraRig.transform.position.y, MiniPrefabInstance.transform.localPosition.z);
+			Vector3 eyeOffset = new Vector3 (cameraEye.transform.localPosition.x, 0, cameraEye.transform.localPosition.z);
+
+			Vector3 rigPos = MiniPrefabInstance.transform.localPosition + eyeOffset;
+			cameraRig.transform.position = rigPos;
 
 
         }

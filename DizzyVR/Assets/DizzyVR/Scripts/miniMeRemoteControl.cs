@@ -111,7 +111,7 @@ public class miniMeRemoteControl : MonoBehaviour {
 
     private void Jump()
     {
-		Debug.Log ("trig" + triggerAxis);
+		//Debug.Log ("trig" + triggerAxis);
 		if (!isJumping && triggerAxis > 0.5 )
         {
             

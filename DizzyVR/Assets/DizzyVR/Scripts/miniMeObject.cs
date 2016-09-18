@@ -7,6 +7,7 @@ public class miniMeObject : MonoBehaviour
     public Vector3 miniPosition;
     public Quaternion miniRotation;
     public Vector3 miniScale;
+	public GameObject miniMe;
 
     public Vector3 bodyPartScale;
     public GameObject cameraRig;
@@ -52,11 +53,11 @@ public class miniMeObject : MonoBehaviour
         //HEAD
         if (bodyPartName == "Head"){
             //do not change the position of the head - just the rotation
-            miniPosition = Vector3.zero;
+            //miniPosition = Vector3.zero;
         }
         //HANDS
         else {
-            var differenceBetweenHeadAndObject = trackedObject.transform.position - trackedHeadObject.transform.position;
+			var differenceBetweenHeadAndObject = trackedObject.transform.localPosition - trackedHeadObject.transform.localPosition;
             miniPosition = differenceBetweenHeadAndObject;
         }
 

@@ -19,7 +19,7 @@ public class MiniMeController : MonoBehaviour {
     GameObject trackedHeadObject;
 
     //The head position when the app was started, or when the 3rd person mode was invoked.
-    Vector3 cachedHeadPosition;
+    Vector3 cachedMiniMePosition;
 
 
     void Awake() {
@@ -41,7 +41,7 @@ public class MiniMeController : MonoBehaviour {
 
 
         //set the initial cached position of the head, and set the position
-        updateCachedHeadPosition();
+        updateMiniMePosition();
 
     }
 	
@@ -52,16 +52,19 @@ public class MiniMeController : MonoBehaviour {
         //on change of the "Allows Movement" property, recache the head position, and set this position
         if (_isInThirdPerson != this.IsInThirdPerson)
         {
-            updateCachedHeadPosition();
+			updateMiniMePosition();
         }
+
+
 
         
         //Debug.Log("" + trackedHeadObject.transform.position + " - " +  miniModelScale);
     }
 
-    void updateCachedHeadPosition() {
-        cachedHeadPosition = trackedHeadObject.transform.position;
+	void updateMiniMePosition() {
+		cachedMiniMePosition = trackedHeadObject.transform.position;
         _isInThirdPerson = this.IsInThirdPerson;
-        this.gameObject.transform.localPosition = trackedHeadObject.transform.position; 
+		this.gameObject.transform.localPosition = this.cameraRig.transform.localPosition;
+		print (this.cameraRig.transform.localPosition);
     }
 }
