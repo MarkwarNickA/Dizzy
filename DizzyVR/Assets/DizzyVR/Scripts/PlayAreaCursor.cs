@@ -38,7 +38,7 @@ public class PlayAreaCursor : MonoBehaviour {
         if (playAreaShown)
         {
             miniPosition = myMiniModel.GetMiniMePosition();
-            miniPosition.y = heightAdjustment;
+            //miniPosition.y = heightAdjustment;
             SetPlayAreaCursorTransform(miniPosition);
         }
     }
@@ -105,6 +105,8 @@ public class PlayAreaCursor : MonoBehaviour {
         playAreaCursorBoundary.transform.parent = playAreaCursor.transform;
         playAreaCursorBoundary.transform.localPosition = localPosition;
 
+        playAreaCursorBoundary.GetComponent<BoxCollider>().enabled = false;
+
         playAreaCursorBoundaries[index] = playAreaCursorBoundary;
     }
 
@@ -131,11 +133,14 @@ public class PlayAreaCursor : MonoBehaviour {
         Utilities.SetPlayerObject(playAreaCursor, VRTK_PlayerObject.ObjectTypes.Pointer);
         playAreaCursor.transform.parent = null;
         playAreaCursor.transform.localScale = new Vector3(width, height, length) * miniModelScale;
+
         playAreaCursor.SetActive(false);
 
         playAreaCursor.GetComponent<Renderer>().enabled = false;
 
-        playAreaCursor.AddComponent<Rigidbody>().isKinematic = true;
+        //playAreaCursor.AddComponent<Rigidbody>().isKinematic = true;
+
+        playAreaCursor.GetComponent<BoxCollider>().enabled = false;
 
         playAreaCursor.layer = LayerMask.NameToLayer("Ignore Raycast");
         
