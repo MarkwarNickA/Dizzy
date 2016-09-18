@@ -9,12 +9,7 @@ public class miniMeObject : MonoBehaviour
     public Vector3 miniScale;
 
     public Vector3 bodyPartScale;
-
     public GameObject cameraRig;
-
-
-    private bool _allowAvatarTranslation = true;
-    public bool AllowAvatarTranslation;
 
     GameObject trackedObject;
     float miniModelScale;
@@ -23,9 +18,6 @@ public class miniMeObject : MonoBehaviour
     MiniModel myMiniModel;
 
     GameObject trackedHeadObject;
-
-    //The head position when the app was started, or when the 3rd person mode was invoked.
-    Vector3 cachedHeadPosition;
 
 
     void Start()
@@ -48,64 +40,32 @@ public class miniMeObject : MonoBehaviour
         //We need the head to make relative positions from the hands (i.e. fix the head)
         trackedHeadObject = cameraRig.transform.GetChild(2).gameObject;
 
-        bodyPartScale = gameObject.transform.localScale;
-        myMiniModel = cameraRig.GetComponent<MiniModel>();
-
-
-        //set the initial cached position of the head
-        cachedHeadPosition = trackedHeadObject.transform.position;
-        _allowAvatarTranslation = this.AllowAvatarTranslation;
+        //bodyPartScale = gameObject.transform.localScale;
+        //myMiniModel = cameraRig.GetComponent<MiniModel>();
     }
 
     void Update()
     {
-        miniModelScale = myMiniModel.miniModelScale;
-        miniModelOffset = myMiniModel.miniModelOffset;
+       
+        string bodyPartName = gameObject.name;
 
-        //track when the value has changed, and recache the head position
-        //on change of the "Allows Movement" property, recache the head position
-        if (_allowAvatarTranslation != this.AllowAvatarTranslation) {
-            cachedHeadPosition = trackedHeadObject.transform.position;
-            _allowAvatarTranslation = this.AllowAvatarTranslation;
+        //HEAD
+        if (bodyPartName == "Head"){
+            //do not change the position of the head - just the rotation
+            miniPosition = Vector3.zero;
         }
-
-        //miniPosition = trackedObject.transform.position;
-
-        if (AllowAvatarTranslation == false)
-        {
-            string bodyPartName = gameObject.name;
-            if (bodyPartName != "Head")
-            {
-                //Get the position relative to the head
-                var differenceBetweenHeadAndObject = trackedObject.transform.position - trackedHeadObject.transform.position;
-                miniPosition = cachedHeadPosition + differenceBetweenHeadAndObject;
-                miniPosition *= miniModelScale;
-                miniPosition += miniModelOffset;
-                miniPosition += cameraRig.transform.position;
-            }
-            else
-            {
-                // Don't update the position of the head - this sdhould only be updated by the vive wands.  
-                miniPosition = new Vector3(cachedHeadPosition.x, trackedObject.transform.position.y, cachedHeadPosition.z);
-                miniPosition *= miniModelScale;
-                miniPosition += miniModelOffset;
-                miniPosition += cameraRig.transform.position;
-            }
-        }
+        //HANDS
         else {
-            miniPosition = trackedObject.transform.position;
-            miniPosition *= miniModelScale;
-            miniPosition += miniModelOffset;
-            miniPosition += cameraRig.transform.position;
+            var differenceBetweenHeadAndObject = trackedObject.transform.position - trackedHeadObject.transform.position;
+            miniPosition = differenceBetweenHeadAndObject;
         }
 
+        //We always pass on rotation to the hands and head
         miniRotation = trackedObject.transform.rotation;
-        miniScale = bodyPartScale * miniModelScale;
-
+       
 
         //Update this hand/head
-        gameObject.transform.localScale = miniScale;
-        gameObject.transform.position = miniPosition;
+        gameObject.transform.localPosition = miniPosition;
         gameObject.transform.rotation = miniRotation;
     }
 }
