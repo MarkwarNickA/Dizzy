@@ -9,13 +9,15 @@ public class miniMeObject : MonoBehaviour
     public Vector3 miniScale;
 
     public Vector3 bodyPartScale;
-
     public GameObject cameraRig;
+
     GameObject trackedObject;
     float miniModelScale;
 
     Vector3 miniModelOffset;
     MiniModel myMiniModel;
+
+    GameObject trackedHeadObject;
 
 
     void Start()
@@ -35,25 +37,35 @@ public class miniMeObject : MonoBehaviour
                 break;
         }
 
-        bodyPartScale = gameObject.transform.localScale;
-        myMiniModel = cameraRig.GetComponent<MiniModel>();
+        //We need the head to make relative positions from the hands (i.e. fix the head)
+        trackedHeadObject = cameraRig.transform.GetChild(2).gameObject;
+
+        //bodyPartScale = gameObject.transform.localScale;
+        //myMiniModel = cameraRig.GetComponent<MiniModel>();
     }
 
     void Update()
     {
-        miniModelScale = myMiniModel.miniModelScale;
-        miniModelOffset = myMiniModel.miniModelOffset;
+       
+        string bodyPartName = gameObject.name;
 
-        miniPosition = trackedObject.transform.position;
-        miniPosition *= miniModelScale;
-        miniPosition += miniModelOffset;
-        miniPosition += cameraRig.transform.position;
+        //HEAD
+        if (bodyPartName == "Head"){
+            //do not change the position of the head - just the rotation
+            miniPosition = Vector3.zero;
+        }
+        //HANDS
+        else {
+            var differenceBetweenHeadAndObject = trackedObject.transform.position - trackedHeadObject.transform.position;
+            miniPosition = differenceBetweenHeadAndObject;
+        }
 
+        //We always pass on rotation to the hands and head
         miniRotation = trackedObject.transform.rotation;
+       
 
-        miniScale = bodyPartScale * miniModelScale;
-        gameObject.transform.localScale = miniScale;
-        gameObject.transform.position = miniPosition;
+        //Update this hand/head
+        gameObject.transform.localPosition = miniPosition;
         gameObject.transform.rotation = miniRotation;
     }
 }
