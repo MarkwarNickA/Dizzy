@@ -14,8 +14,11 @@ public class MiniModel : MonoBehaviour
     GameObject leftHand;
     GameObject rightHand;
 
+	public GameObject miniMe;
     public GameObject oneToOneModel;
     public GameObject miniModelInstance;
+
+
         
     Renderer[] buildingModelRenderers;
 
@@ -38,7 +41,11 @@ public class MiniModel : MonoBehaviour
     {             
         miniModelInstance = miniBuildingModelInstantiate(oneToOneModel);
         setControllerButtons();
-		firstPersonMode = true;
+		firstPersonMode = false;
+		//disable hand controls
+		GetComponent<VRTK_TouchpadWalking>().LeftController = false;
+		GetComponent<VRTK_TouchpadWalking>().RightController = false;
+
     }
 
     void Update()
@@ -46,13 +53,9 @@ public class MiniModel : MonoBehaviour
         miniModelPositionUpdate(miniModelInstance);
 
 		//sloppy keyboard event for non-vives
-		if (Input.GetKeyDown(KeyCode.Space)){
-			if(firstPersonMode == true){
-				firstPersonMode = false;
-			}else {
-				firstPersonMode = true;		
-			}	
-		}
+		//if (Input.GetKeyDown(KeyCode.Space)){
+		//	swapMode ();
+		//}
     }
 
     public GameObject miniBuildingModelInstantiate(GameObject model)
@@ -97,12 +100,84 @@ public class MiniModel : MonoBehaviour
 
 	public void swapMode(object sender, ControllerInteractionEventArgs e){
 		if(firstPersonMode == true){
+
+			Debug.Log ("3RD PERSON MODE!:");
 			firstPersonMode = false;
+			//show miniMe
+			miniMe.BroadcastMessage("Show");
+
+			//show miniMap
+			miniModelInstance.BroadcastMessage("Show");
+
+			//hide environment
+			oneToOneModel.BroadcastMessage("Hide");
+
+			//disable hand controls
+			GetComponent<VRTK_TouchpadWalking>().LeftController = true;
+			GetComponent<VRTK_TouchpadWalking>().RightController = true;
+
+			//disable phyiscal movement minime
+			miniMe.BroadcastMessage("SetAllowAvatarTranslation", false);
+
+
+
 		}else {
-			firstPersonMode = true;		
+			
+			Debug.Log ("1st PERSON MODE!");
+
+			firstPersonMode = true;
+
+			//hide miniMe
+			miniMe.BroadcastMessage("Hide");
+
+			//hide miniMap
+			miniModelInstance.BroadcastMessage("Hide");
+
+			//show environment
+			oneToOneModel.BroadcastMessage("Show");
+
+			//enabled hand controls
+			GetComponent<VRTK_TouchpadWalking>().LeftController = false;
+			GetComponent<VRTK_TouchpadWalking>().RightController = false;
+
+			//enable phyiscal movement of minime
+			miniMe.BroadcastMessage("SetAllowAvatarTranslation", true);
+
+		}
+	}
+
+	/*
+	public void swapMode(){
+		if(firstPersonMode == true){
+			firstPersonMode = false;
+			//show miniMe
+			miniMe.BroadcastMessage("Show");
+
+			//show miniMap
+			miniModelInstance.BroadcastMessage("Show");
+
+			//hide environment
+			oneToOneModel.BroadcastMessage("Hide");
+
+
+		}else {
+			firstPersonMode = true;
+
+			//hide miniMe
+			miniMe.BroadcastMessage("Hide");
+
+			//hide miniMap
+			miniModelInstance.BroadcastMessage("Hide");
+
+			//show environment
+			oneToOneModel.BroadcastMessage("Show");
+
 		}
 		Debug.Log("Mode switched to: " + firstPersonMode);
 	}
+	*/
+
+
 		
 
 }

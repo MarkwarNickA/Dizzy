@@ -85,6 +85,7 @@ public class miniMeObject : MonoBehaviour
             }
             else
             {
+				
                 // Don't update the position of the head - this sdhould only be updated by the vive wands.  
                 miniPosition = new Vector3(cachedHeadPosition.x, trackedObject.transform.position.y, cachedHeadPosition.z);
                 miniPosition *= miniModelScale;
@@ -108,4 +109,8 @@ public class miniMeObject : MonoBehaviour
         gameObject.transform.position = miniPosition;
         gameObject.transform.rotation = miniRotation;
     }
+
+	public void SetAllowAvatarTranslation(bool val){
+		AllowAvatarTranslation = val;
+	}
 }
